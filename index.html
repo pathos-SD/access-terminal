@@ -11,10 +11,12 @@
         let randomNumber = localStorage.getItem('randomNumber');
         let email = localStorage.getItem('email')
 
-        if (!email) {
-          document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`
-        } else {
-          document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`
+        function primary() {
+            if ((!email)+(email == null)) {
+              document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`
+            } else {
+              document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`
+            }
         }
 
 
@@ -145,7 +147,7 @@
       }
     </style>
 </head>
-<body>
+<body onload="primary()">
     <h1>Authorization</h1>
     <p id="authorization-status"></p>
     <div id="g_id_onload"
