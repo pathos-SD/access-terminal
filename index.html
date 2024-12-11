@@ -7,7 +7,7 @@
 
     <!-- Load the Google API Client Library -->
 </head>
-<body>
+<body onload="testChange()">
 
     <h1 id="changing-text">Sign in with Google</h1>
     <!-- Google Sign-In Button -->
@@ -25,7 +25,7 @@
 
     <script>
         // Handle form submission
-        document.getElementById('changing-text').innerHTML = test
+        function testChange() {document.getElementById('changing-text').innerHTML = "test"}
     </script>
 
 </body>
