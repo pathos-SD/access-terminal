@@ -6,21 +6,45 @@
     <title>Google Sign-In</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-        let serverResponse = null; // Variable to store the server response
+        let serverResponse2 = null; // Variable to store the server response
         let randomNumber = localStorage.getItem('randomNumber');
+        let email = localStorage.getItem('email')
 
-        if (!randomNumber) {
-            randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
-            localStorage.setItem('randomNumber', randomNumber); // Store it locally
-        }
 
         function handleCredentialResponse(response) {
             // Decode JWT to get the user's email
             const payload = JSON.parse(atob(response.credential.split('.')[1]));
-            const email = payload.email;
+            email = payload.email;
+            randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
+          
+            localStorage.setItem('randomNumber', randomNumber); // Store it locally
+            localStorage.setItem('email', email)
+            }
 
             // Send the email and random number to your endpoint
-            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}`, {
+            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&type=1`, {
+                method: 'GET',
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Parse JSON response
+                } else {
+                    throw new Error('Failed to fetch response.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+            const inputValue = document.getElementById('inputField').value; // Get input field value
+            let formValue = inputValue; // Variable to work with in the function
+            console.log('Form Value:', formValue);
+            // Add further processing logic here
+
+            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${inputValue}&type=2`, {
                 method: 'GET',
             })
             .then(response => {
@@ -31,9 +55,10 @@
                 }
             })
             .then(data => {
-                serverResponse = data; // Store the response in the variable
-                console.log('Server Response:', serverResponse);
+                serverResponse2 = data.result; // Store the response in the variable
+                console.log('Server Response:', serverResponse2);
                 // Handle the response data as needed
+                document.getElementById('type2-response').innerHTML = serverResponse2
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -48,5 +73,13 @@
          data-callback="handleCredentialResponse">
     </div>
     <div class="g_id_signin" data-type="standard"></div>
+
+    <h2>Submit a Form</h2>
+    <form id="exampleForm" onsubmit="handleFormSubmit(event)">
+        <label for="inputField">Enter a value:</label>
+        <input type="text" id="inputField" name="inputField" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="type2-response"></p>
 </body>
 </html>
