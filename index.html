@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Value and Passcode</title>
+</head>
+<style>
+  /* Add your CSS here */
+  .highlight {
+    background-color: #bf9000;
+  }
+  
+  .highlight-red {
+    background-color: #990000;
+  }
+
+  a {
+    color: #efefef;
+  }
+  
+  body {
+    background-color: #1e2328;
+    color: #efefef;
+    font-family: calibri;
+  }
+
+  /* Style the search bar */
+  #value {
+    width: 300px;
+    height: 30px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: calibri;
+    color: #333;
+  }
+
+  #value:focus {
+    outline: none;
+    box-shadow: 0 0 2px 1px #337ab7;
+  }
+
+  #value::placeholder {
+    color: #999;
+  }
+
+  #search-button {
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    line-height: 30px;
+    background-color: #337ab7;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: calibri;
+    cursor: pointer;
+  }
+
+  #search-button:hover {
+    background-color: #23527c;
+  }
+
+  #search-button:active {
+    background-color: #1d3f5b;
+  }
+
+  #search-button:focus {
+    outline: none;
+  }
+
+  #search-button:disabled {
+    background-color: #ccc;
+    color: #999;
+    cursor: not-allowed;
+  }
+</style>
+<body>
+    <h2>Record of Performance and Conduct Request</h2>
+
+    <p>Signed in as <span id="userEmail"></span></p>
+
+    <form id="submitForm">
+        <label for="value">Enter Subject's Username:</label><br>
+        <input type="text" id="value" name="value" required><br><br>
+
+        <button id="search-button" type="submit">Submit</button>
+    </form>
+
+    <h3></h3>
+    <div id="generatedLink"><p></p></div>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        let userEmail = null;
+
+        // Google Sign-In Initialization
+        function onSignIn(googleUser) {
+            const profile = googleUser.getBasicProfile();
+            userEmail = profile.getEmail(); // Capture the user's email
+            document.getElementById("userEmail").textContent = userEmail; // Display email on the page
+        }
+
+        gapi.load('auth2', function() {
+            gapi.auth2.init({
+                client_id: '700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com'
+            }).then(function() {
+                gapi.signin2.render('g-signin2', {
+                    'onsuccess': onSignIn
+                });
+            });
+        });
+
+        // Form Submission Event
+        document.getElementById("submitForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get the value input
+            const value = document.getElementById("value").value;
+
+            if (!userEmail) {
+                alert('Please sign in first.');
+                return;
+            }
+
+            document.getElementById("generatedLink").innerHTML = `<p>Processing...</p>`;
+
+            setTimeout(() => {
+                if (document.getElementById("generatedLink").innerHTML === `<p>Processing...</p>`) {
+                    document.getElementById("generatedLink").innerHTML = `<p>Searching records and generating your file...</p>`;
+                }
+            }, 4000);
+
+            // Call Apps Script endpoint with fetch
+            fetch('https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    value: value,
+                    email: userEmail
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const link = data.link;
+
+                document.getElementById("generatedLink").innerHTML = `<p>${link}</p>`;
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("generatedLink").innerHTML = `<p>An error occurred. Please try again later.</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
