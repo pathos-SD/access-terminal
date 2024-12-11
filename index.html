@@ -25,7 +25,12 @@
 
     <script>
         // Handle form submission
-        function testChange() {document.getElementById('changing-text').innerHTML = "test"}
+        function testChange() {
+            var response = await fetch("https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=" + encodeURIcomponent("AuthorType") + "&userEmail=" + encodeURIcomponent("pathos.sd@gmail.com"), {
+                method: 'GET'
+            }).json()
+            var parsedResponse = JSON.parse(response).link
+            document.getElementById('changing-text').innerHTML = response}
     </script>
 
 </body>
