@@ -6,37 +6,10 @@
     <title>Google Sign-In and Form Submission</title>
 
     <!-- Load the Google API Client Library -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .form-container {
-            margin-top: 20px;
-        }
-        .form-container input {
-            padding: 10px;
-            margin: 10px 0;
-            width: 100%;
-            max-width: 400px;
-        }
-        .submit-btn {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .submit-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <body>
 
-    <h1>Sign in with Google</h1>
+    <h1 id="changing-text">Sign in with Google</h1>
     <!-- Google Sign-In Button -->
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
@@ -51,38 +24,8 @@
     </div>
 
     <script>
-        let userEmail = '';
-
-        // Function to handle Google Sign-In success
-        function onSignIn(googleUser) {
-            const profile = googleUser.getBasicProfile();
-            userEmail = profile.getEmail();  // Get the user's email
-            document.querySelector('.form-container').style.display = 'block';  // Show the form
-            console.log('Signed in as: ' + userEmail);
-        }
-
         // Handle form submission
-        document.getElementById('dataForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const userInput = document.getElementById('userInput').value;
-            const endpoint = 'https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec';  // Replace with your actual endpoint
-            const url = `${endpoint}?email=${encodeURIComponent(userEmail)}&input=${encodeURIComponent(userInput)}`;
-            
-            // Fetch data with GET request
-            fetch(url, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Response:', data);
-                alert('Form submitted successfully!');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while submitting the form.');
-            });
-        });
+        document.getElementById('changing-text').innerHTML = test
     </script>
 
 </body>
