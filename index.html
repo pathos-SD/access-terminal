@@ -3,27 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test changing with fetching test</title>
-</head>
-<body onload="testChange()">
-
-    <h1 id="changing-text">this text should change</h1>
-
+    <title>Google Sign-In</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-        // Handle form submission
-        async function testChange() {
-            // Await the response from the fetch request
-            var response = await fetch("https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?username=" + encodeURIComponent("AuthorType") + "&userEmail=" + encodeURIComponent("pathos.sd@gmail.com"), {
-                method: 'GET'
+        let serverResponse = null; // Variable to store the server response
+
+        function handleCredentialResponse(response) {
+            // Decode JWT to get the user's email
+            const payload = JSON.parse(atob(response.credential.split('.')[1]));
+            const email = payload.email;
+
+            // Send the email to your endpoint
+            fetch('https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=' + encodeURIComponent(email), {
+                method: 'GET',
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Parse JSON response
+                } else {
+                    throw new Error('Failed to fetch response.');
+                }
+            })
+            .then(data => {
+                serverResponse = JSON.parse(data).link; // Store the response in the variable
+                console.log('Server Response:', serverResponse);
+                // Handle the response data as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
-
-            // Parse the JSON response
-            var data = await response.json();
-
-            // Use the data in the response to change the text
-            document.getElementById('changing-text').innerHTML = data.link;
         }
     </script>
-
+</head>
+<body>
+    <h1>Sign in with Google</h1>
+    <div id="g_id_onload"
+         data-client_id="700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
 </body>
 </html>
