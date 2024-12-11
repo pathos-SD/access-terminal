@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sign-In</title>
+    <title>SD Access Terminal</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
         let serverResponse2 = null; // Variable to store the server response
         let randomNumber = localStorage.getItem('randomNumber');
         let email = localStorage.getItem('email')
+
+        if (!email) {
+          document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`
+        } else {
+          document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`
+        }
 
 
         function handleCredentialResponse(response) {
@@ -35,7 +42,7 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-        }
+          }
 
         function handleFormSubmit(event) {
             event.preventDefault(); // Prevent default form submission
@@ -44,7 +51,7 @@
             console.log('Form Value:', formValue);
             // Add further processing logic here
 
-            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${inputValue}&type=2`, {
+            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${encodeURIComponent(inputValue)}&type=2`, {
                 method: 'GET',
             })
             .then(response => {
@@ -65,9 +72,82 @@
             });
         }
     </script>
+    <style>
+      .highlight {
+        background-color: #bf9000;
+      }
+      
+      .highlight-red {
+        background-color: #990000;
+      }
+
+      a {
+        color: #efefef;
+      }
+      
+      body {
+        background-color: #1e2328;
+        color: #efefef;
+        font-family: calibri;
+      }
+      /* Style the search bar */
+      #inputField {
+        width: 300px;
+        height: 30px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 5px 10px;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: calibri;
+        color: #333;
+      }
+
+      #inputField:focus {
+        outline: none;
+        box-shadow: 0 0 2px 1px #337ab7;
+      }
+
+      #inputField::placeholder {
+        color: #999;
+      }
+
+      /* Style the search button */
+      #search-button {
+        border: none;
+        border-radius: 10px;
+        padding: 5px 10px;
+        line-height: 30px;
+        background-color: #337ab7;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: calibri;
+        cursor: pointer;
+      }
+
+      #search-button:hover {
+        background-color: #23527c;
+      }
+
+      #search-button:active {
+        background-color: #1d3f5b;
+      }
+
+      #search-button:focus {
+        outline: none;
+      }
+
+      #search-button:disabled {
+        background-color: #ccc;
+        color: #999;
+        cursor: not-allowed;
+      }
+    </style>
 </head>
 <body>
-    <h1>Sign in with Google</h1>
+    <h1>Authorization</h1>
+    <p id="authorization-status"></p>
     <div id="g_id_onload"
          data-client_id="700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com"
          data-callback="handleCredentialResponse">
@@ -78,7 +158,7 @@
     <form id="exampleForm" onsubmit="handleFormSubmit(event)">
         <label for="inputField">Enter a value:</label>
         <input type="text" id="inputField" name="inputField" required>
-        <button type="submit">Submit</button>
+        <button id="search-button" type="submit">Submit</button>
     </form>
     <p id="type2-response"></p>
 </body>
