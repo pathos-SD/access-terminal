@@ -7,14 +7,20 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
         let serverResponse = null; // Variable to store the server response
+        let randomNumber = localStorage.getItem('randomNumber');
+
+        if (!randomNumber) {
+            randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
+            localStorage.setItem('randomNumber', randomNumber); // Store it locally
+        }
 
         function handleCredentialResponse(response) {
             // Decode JWT to get the user's email
             const payload = JSON.parse(atob(response.credential.split('.')[1]));
             const email = payload.email;
 
-            // Send the email to your endpoint
-            fetch('https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=' + encodeURIComponent(email), {
+            // Send the email and random number to your endpoint
+            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}`, {
                 method: 'GET',
             })
             .then(response => {
@@ -25,7 +31,7 @@
                 }
             })
             .then(data => {
-                serverResponse = JSON.parse(data).link; // Store the response in the variable
+                serverResponse = data; // Store the response in the variable
                 console.log('Server Response:', serverResponse);
                 // Handle the response data as needed
             })
