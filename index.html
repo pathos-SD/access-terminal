@@ -15,7 +15,6 @@
         if ((!email) || (email == null)) {
           document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`;
         } else {
-          document.getElementById('g_id_onload').`data-auto_prompt` = `false`
           document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`;
           
           document.getElementById('buttons').innerHTML = `          <button id="menu-button" onclick="handleMenu(3);" type="submit">Database Assignment Panel</button>
