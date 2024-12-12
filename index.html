@@ -14,6 +14,34 @@
         if ((!email) || (email == null)) {
           document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`;
         } else {
+                  fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&email=${encodeURIComponent(email)}&type=0`, {
+          method: 'GET',
+          headers: {
+            'Referer': window.location.origin, // Add Referer header to verify request origin
+          },
+        }).then(response => {
+          if (response.ok) {
+            return response.json(); // Parse JSON response
+          } else {
+            throw new Error('Failed to fetch response.');
+          }
+        }).then(data => {
+          var result = data.result; // Store the response in the variable
+          console.log(result)
+          if (result == "Failed") {
+                  document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`;
+                } else {
+                  document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`;
+                  
+                  document.getElementById('buttons').innerHTML = `          <button id="menu-button" onclick="handleMenu(3);" type="submit">Database Assignment Panel</button>
+                  <button id="menu-button" onclick="handleMenu(2);" type="submit">Record of Performance and Conduct Request</button>
+                  <button id="menu-button" onclick="handleMenu(4);" type="submit">MP Traffic Submission</button>`
+                }
+                return response; // Parse JSON response
+          }
+        }).catch(error => {
+          console.error('Error:', error);
+        });
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&email=${encodeURIComponent(email)}&type=0`, {
               method: 'GET',
             }).then(response => {
