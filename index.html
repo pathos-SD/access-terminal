@@ -1,98 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD Access Terminal</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-        let serverResponse2 = null; // Variable to store the server response
-        let randomNumber = localStorage.getItem('randomNumber');
-        let email = localStorage.getItem('email');
+      let serverResponse2 = null; // Variable to store the server response
+      let randomNumber = localStorage.getItem('randomNumber');
+      let email = localStorage.getItem('email');
 
-        function primary() {
-            if ((!email) || (email == null)) {
-              document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`;
+      function primary() {
+        if ((!email) || (email == null)) {
+          document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`;
+        } else {
+          document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`;
+          
+          document.getElementById('buttons').innerHTML = `          <button id="menu-button" onclick="handleMenu(3);" type="submit">Database Assignment Panel</button>
+          <button id="menu-button" onclick="handleMenu(2);" type="submit">Record of Performance and Conduct Request</button>
+          <button id="menu-button" onclick="handleMenu(4);" type="submit">MP Traffic Submission</button>`
+        }
+      }
+
+      function handleMenu(type) {
+        if (type == 2) {
+          document.getElementById('authorization-status').innerHTML = `        <h3 style="margin-bottom:15px">Record of Performance and Conduct Request</h3>
+        <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
+          <label for="inputField">Enter the subject's username:</label><br><br>
+          <input type="text" id="inputField" name="inputField" required>
+          <br>
+          <br>
+          <button id="search-button" type="submit">Submit</button>
+        </form>
+        <p id="type2-response"></p>`;
+        } else if (type == 3) {
+          document.getElementById('authorization-status').innerHTML = `        <h3 style="margin-bottom:15px">Database Assignment Panel</h3>
+        <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
+          <label for="inputField">Enter the subject's username:</label><br><br>
+          <input type="text" id="inputField" name="inputField" required>
+          <br>
+          <br>
+          <button id="search-button" type="submit">Submit</button>
+        </form>
+        <p id="type2-response"></p>`
+        } else if (type == 4) {
+          document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">MP Traffic Form</h3>
+        <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
+          <label for="inputField">Enter the subject's username:</label><br><br>
+          <input type="text" id="inputField" name="inputField" required>
+          <br>
+          <br>
+          <button id="search-button" type="submit">Submit</button>
+        </form>
+        <p id="type2-response"></p>`
+        }
+      }
+
+      function sanitizeInput(input) {
+        const div = document.createElement('div');
+        div.textContent = input;
+        return div.innerHTML;
+      }
+
+      function handleCredentialResponse(response) {
+        try {
+          // Decode JWT to get the user's email
+          const payload = JSON.parse(atob(response.credential.split('.')[1]));
+          email = payload.email;
+          randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
+          localStorage.setItem('randomNumber', randomNumber); // Store it locally
+          localStorage.setItem('email', email);
+          // Send the email and random number to your endpoint
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
+            method: 'GET',
+          }).then(response => {
+            if (response.ok) {
+              console.log(response)
+              return response; // Parse JSON response
             } else {
-              document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`;
+              throw new Error('Failed to fetch response.');
             }
+          }).catch(error => {
+            console.error('Error:', error);
+          });
+        } catch (error) {
+          console.error('Failed to parse credential response:', error);
         }
+      }
 
-        function sanitizeInput(input) {
-            const div = document.createElement('div');
-            div.textContent = input;
-            return div.innerHTML;
-        }
-
-        function handleCredentialResponse(response) {
-            try {
-                // Decode JWT to get the user's email
-                const payload = JSON.parse(atob(response.credential.split('.')[1]));
-                email = payload.email;
-                randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
-              
-                localStorage.setItem('randomNumber', randomNumber); // Store it locally
-                localStorage.setItem('email', email);
-
-                // Send the email and random number to your endpoint
-                fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
-                    method: 'GET',
-                })
-                .then(response => {
-                    if (response.ok) {
-                        console.log(response)
-                        return response; // Parse JSON response
-                    } else {
-                        throw new Error('Failed to fetch response.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            } catch (error) {
-                console.error('Failed to parse credential response:', error);
-            }
+      function handleType2Form(event) {
+        event.preventDefault(); // Prevent default form submission
+        const inputValue = document.getElementById('inputField').value; // Get input field value
+        let formValue = inputValue; // Variable to work with in the function
+        console.log('Form Value:', formValue);
+        // Add further processing logic here
+        document.getElementById('type2-response').innerHTML = 'Processing your request. This may take a few seconds...';
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${encodeURIComponent(inputValue)}&type=2`, {
+          method: 'GET',
+          headers: {
+            'Referer': window.location.origin, // Add Referer header to verify request origin
+          },
+        }).then(response => {
+          if (response.ok) {
+            return response.json(); // Parse JSON response
+          } else {
+            throw new Error('Failed to fetch response.');
           }
-
-        function handleFormSubmit(event) {
-            event.preventDefault(); // Prevent default form submission
-            const inputValue = document.getElementById('inputField').value; // Get input field value
-            let formValue = inputValue; // Variable to work with in the function
-            console.log('Form Value:', formValue);
-            // Add further processing logic here
-            document.getElementById('type2-response').innerHTML = 'Processing your request. This may take a few seconds...';
-            
-            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${encodeURIComponent(inputValue)}&type=2`, {
-                method: 'GET',
-                headers: {
-                    'Referer': window.location.origin, // Add Referer header to verify request origin
-                },
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json(); // Parse JSON response
-                } else {
-                    throw new Error('Failed to fetch response.');
-                }
-            })
-            .then(data => {
-                serverResponse2 = data.result; // Store the response in the variable
-                console.log('Server Response:', serverResponse2);
-                // Handle the response data as needed
-                const sanitizedResponse = sanitizeInput(serverResponse2);
-                document.getElementById('type2-response').innerHTML = sanitizedResponse;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
+        }).then(data => {
+          serverResponse2 = data.result; // Store the response in the variable
+          console.log('Server Response:', serverResponse2);
+          // Handle the response data as needed
+          const sanitizedResponse = sanitizeInput(serverResponse2);
+          document.getElementById('type2-response').innerHTML = sanitizedResponse;
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+      }
     </script>
     <style>
       .highlight {
         background-color: #bf9000;
       }
-      
+
       .highlight-red {
         background-color: #990000;
       }
@@ -100,12 +130,13 @@
       a {
         color: #efefef;
       }
-      
+
       body {
         background-color: #1e2328;
         color: #efefef;
         font-family: calibri;
       }
+
       /* Style the search bar */
       #inputField {
         width: 300px;
@@ -159,29 +190,55 @@
         color: #999;
         cursor: not-allowed;
       }
-    </style>
-</head>
-<body onload="primary()">
-    <h3>Authorization</h1>
-    <p id="authorization-status"></p>
-    <div id="g_id_onload"
-         data-client_id="700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com"
-         data-callback="handleCredentialResponse">
-    </div>
-    <div class="g_id_signin" data-type="standard"></div>
+      
+      #menu-button {
+        border: none;
+        border-radius: 10px;
+        padding: 5px 10px;
+        margin-top: 10px;
+        line-height: 30px;
+        background-color: #33b779;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: calibri;
+        cursor: pointer;
+      }
 
-    <div id="buttons">
-    </div>
-    
-    <div id="form-body">
-        <h2>Record of Performance and Conduct Request</h2>
-        <form id="exampleForm" onsubmit="handleFormSubmit(event)">
-            <label for="inputField">Enter the subject's username:</label><br>
-            <input type="text" id="inputField" name="inputField" required><br><br>
-            
-            <button id="search-button" type="submit">Submit</button>
-        </form>
-        <p id="type2-response"></p>
-    </div>
-</body>
+      #menu-button:hover {
+        background-color: #237c52;
+      }
+
+      #menu-button:active {
+        background-color: #1d5b3f;
+      }
+
+      #menu-button:focus {
+        outline: none;
+      }
+
+      #menu-button:disabled {
+        background-color: #ccc;
+        color: #999;
+        cursor: not-allowed;
+      }
+
+      hr.rounded {
+        border-top: 8px solid #337ab7;
+        border-bottom: 1px solid #337ab7;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body onload="primary()">
+    <h4 style="margin-bottom:0px">Authorization</h4>
+      <p style="margin-top:5px" id="authorization-status"></p>
+      <div id="g_id_onload" data-client_id="YOUR_CLIENT_ID" data-callback="handleCredentialResponse"></div>
+      <div class="g_id_signin" data-type="standard"></div>
+      <hr class="rounded">
+      <div id="buttons">
+      </div>
+      <div id="form-body">
+      </div>
+  </body>
 </html>
