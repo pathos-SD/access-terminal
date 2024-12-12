@@ -36,12 +36,13 @@
                 localStorage.setItem('email', email);
 
                 // Send the email and random number to your endpoint
-                fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
+                fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
                     method: 'GET',
                 })
                 .then(response => {
                     if (response.ok) {
-                        return response.json(); // Parse JSON response
+                        console.log(response)
+                        return response; // Parse JSON response
                     } else {
                         throw new Error('Failed to fetch response.');
                     }
