@@ -25,7 +25,7 @@
 
       function handleMenu(type) {
         if (type == 2) {
-          document.getElementById('authorization-status').innerHTML = `        <h3 style="margin-bottom:15px">Record of Performance and Conduct Request</h3>
+          document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">Record of Performance and Conduct Request</h3>
         <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
           <label for="inputField">Enter the subject's username:</label><br><br>
           <input type="text" id="inputField" name="inputField" required>
@@ -35,7 +35,7 @@
         </form>
         <p id="type2-response"></p>`;
         } else if (type == 3) {
-          document.getElementById('authorization-status').innerHTML = `        <h3 style="margin-bottom:15px">Database Assignment Panel</h3>
+          document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">Database Assignment Panel</h3>
         <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
           <label for="inputField">Enter the subject's username:</label><br><br>
           <input type="text" id="inputField" name="inputField" required>
