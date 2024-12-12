@@ -61,7 +61,8 @@
             let formValue = inputValue; // Variable to work with in the function
             console.log('Form Value:', formValue);
             // Add further processing logic here
-
+            document.getElementById('type2-response').innerHTML = 'Processing your request. This may take a few seconds...';
+            
             fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${encodeURIComponent(inputValue)}&type=2`, {
                 method: 'GET',
                 headers: {
@@ -169,13 +170,15 @@
     </div>
     <div class="g_id_signin" data-type="standard"></div>
 
-    <h2>Submit a Form</h2>
-    <form id="exampleForm" onsubmit="handleFormSubmit(event)">
-        <label for="inputField">Enter a value:</label><br>
-        <input type="text" id="inputField" name="inputField" required><br><br>
-        
-        <button id="search-button" type="submit">Submit</button>
-    </form>
-    <p id="type2-response"></p>
+    <div id="form-body>
+        <h2>Record of Performance and Conduct Request</h2>
+        <form id="exampleForm" onsubmit="handleFormSubmit(event)">
+            <label for="inputField">Enter the subject's username:</label><br>
+            <input type="text" id="inputField" name="inputField" required><br><br>
+            
+            <button id="search-button" type="submit">Submit</button>
+        </form>
+        <p id="type2-response"></p>
+    </div>
 </body>
 </html>
