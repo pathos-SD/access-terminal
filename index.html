@@ -26,7 +26,7 @@
         if (type == 2) {
           document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">Record of Performance and Conduct Request</h3>
         <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
-          <label for="inputField">Enter the subject's username:</label><br><br>
+          <label for="inputField">Subject's Username:</label><br><br>
           <input type="text" id="inputField" name="inputField" required>
           <br>
           <br>
@@ -37,10 +37,10 @@
           document.getElementById('form-body').innerHTML = `<h3 style="margin-bottom:15px">Database Assignment Panel</h3>
 <form id="type3-form" style="line-height:10px" onsubmit="handleType3Form(event)">
 
-    <label for="inputUsername">Assignee's Username</label>
-    <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20">
+    <label for="inputUsername">Assignee's Username:</label><br><br>
+    <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
 
-    <label for="inputAssignment">Assignment</label>
+    <label for="inputAssignment">Assignment:</label><br><br>
     <select id="inputAssignment" name="inputAssignment" required>
         <option value="Unassigned">Unassigned</option>
         <option value="1st Battalion">1st Battalion</option>
@@ -187,7 +187,7 @@
         <option value="IA V-Chairman">IA V-Chairman</option>
         <option value="IA Member">IA Member</option>
         <option value="IA Removal">IA Removal</option>
-    </select>
+    </select><br><br>
 
   <button id="search-button" type="submit">Submit</button>
 </form>
@@ -322,7 +322,7 @@
       }
 
       /* Style the search bar */
-      #inputField {
+      #inputField, #inputUsername, #inputAssignment {
         width: 300px;
         height: 30px;
         border: 2px solid #ccc;
@@ -334,12 +334,12 @@
         color: #333;
       }
 
-      #inputField:focus {
+      #inputField:focus, #inputUsername:focus, #inputAssignment:focus {
         outline: none;
         box-shadow: 0 0 2px 1px #337ab7;
       }
 
-      #inputField::placeholder {
+      #inputField::placeholder, #inputUsername::placeholder {
         color: #999;
       }
 
