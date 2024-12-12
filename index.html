@@ -19,8 +19,9 @@
             }).then(response => {
               if (response.ok) {
                 console.log(response)
-                let result = response.json().result
-                console.log(result)
+                let resulta = response.json()
+                console.log(resulta)
+                console.log(resulta.result)
                 if (result == "Failed") {
                   document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`;
                 } else {
