@@ -9,41 +9,49 @@
     <script>
         let serverResponse2 = null; // Variable to store the server response
         let randomNumber = localStorage.getItem('randomNumber');
-        let email = localStorage.getItem('email')
+        let email = localStorage.getItem('email');
 
         function primary() {
-            if ((!email)+(email == null)) {
-              document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`
+            if ((!email) || (email == null)) {
+              document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.`;
             } else {
-              document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`
+              document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.`;
             }
         }
 
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
 
         function handleCredentialResponse(response) {
-            // Decode JWT to get the user's email
-            const payload = JSON.parse(atob(response.credential.split('.')[1]));
-            email = payload.email;
-            randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
-          
-            localStorage.setItem('randomNumber', randomNumber); // Store it locally
-            localStorage.setItem('email', email)
-            
+            try {
+                // Decode JWT to get the user's email
+                const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                email = payload.email;
+                randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
+              
+                localStorage.setItem('randomNumber', randomNumber); // Store it locally
+                localStorage.setItem('email', email);
 
-            // Send the email and random number to your endpoint
-            fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&type=1`, {
-                method: 'GET',
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json(); // Parse JSON response
-                } else {
-                    throw new Error('Failed to fetch response.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                // Send the email and random number to your endpoint
+                fetch(`https://script.google.com/macros/s/YOUR_APP_SCRIPT_ID/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json(); // Parse JSON response
+                    } else {
+                        throw new Error('Failed to fetch response.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } catch (error) {
+                console.error('Failed to parse credential response:', error);
+            }
           }
 
         function handleFormSubmit(event) {
@@ -55,6 +63,9 @@
 
             fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${encodeURIComponent(inputValue)}&type=2`, {
                 method: 'GET',
+                headers: {
+                    'Referer': window.location.origin, // Add Referer header to verify request origin
+                },
             })
             .then(response => {
                 if (response.ok) {
@@ -67,7 +78,8 @@
                 serverResponse2 = data.result; // Store the response in the variable
                 console.log('Server Response:', serverResponse2);
                 // Handle the response data as needed
-                document.getElementById('type2-response').innerHTML = serverResponse2
+                const sanitizedResponse = sanitizeInput(serverResponse2);
+                document.getElementById('type2-response').innerHTML = sanitizedResponse;
             })
             .catch(error => {
                 console.error('Error:', error);
