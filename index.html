@@ -34,15 +34,159 @@
         </form>
         <p id="type2-response"></p>`;
         } else if (type == 3) {
-          document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">Database Assignment Panel</h3>
-        <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
-          <label for="inputField">Enter the subject's username:</label><br><br>
-          <input type="text" id="inputField" name="inputField" required>
-          <br>
-          <br>
-          <button id="search-button" type="submit">Submit</button>
-        </form>
-        <p id="type2-response"></p>`
+          document.getElementById('form-body').innerHTML = `<h3 style="margin-bottom:15px">Database Assignment Panel</h3>
+<form id="type3-form" style="line-height:10px" onsubmit="handleType3Form(event)">
+
+    <label for="inputUsername">Assignee's Username</label>
+    <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20">
+
+    <label for="inputAssignment">Assignment</label>
+    <select id="inputAssignment" name="inputAssignment" required>
+        <option value="unassigned">Unassigned</option>
+        <option value="csu">Combat Support Unit</option>
+        <option value="mp">Military Police</option>
+        <option value="sru">Security Response Unit</option>
+        <option value="training">Training & Education Squad</option>
+        <option value="1stbattalion">1st Battalion</option>
+        <option value="2ndbattalion">2nd Battalion</option>
+        <option value="3rdbattalion">3rd Battalion</option>
+        <option value="4thbattalion">4th Battalion</option>
+        <option value="5thbattalion">5th Battalion</option>
+        <option value="companyA">Company A</option>
+        <option value="companyB">Company B</option>
+        <option value="companyC">Company C</option>
+        <option value="companyD">Company D</option>
+        <option value="companyE">Company E</option>
+        <option value="companyF">Company F</option>
+        <option value="companyG">Company G</option>
+        <option value="companyH">Company H</option>
+        <option value="companyI">Company I</option>
+        <option value="companyJ">Company J</option>
+        <option value="companyK">Company K</option>
+        <option value="companyL">Company L</option>
+        <option value="companyM">Company M</option>
+        <option value="companyN">Company N</option>
+        <option value="companyO">Company O</option>
+        <option value="companyP">Company P</option>
+        <option value="companyQ">Company Q</option>
+        <option value="companyR">Company R</option>
+        <option value="companyS">Company S</option>
+        <option value="companyT">Company T</option>
+        <option value="companyU">Company U</option>
+        <option value="companyV">Company V</option>
+        <option value="companyW">Company W</option>
+        <option value="companyX">Company X</option>
+        <option value="companyY">Company Y</option>
+        <option value="companyZ">Company Z</option>
+        <option value="platoon1">Platoon 1</option>
+        <option value="platoon2">Platoon 2</option>
+        <option value="platoon3">Platoon 3</option>
+        <option value="platoon4">Platoon 4</option>
+        <option value="platoon5">Platoon 5</option>
+        <option value="platoon6">Platoon 6</option>
+        <option value="platoon7">Platoon 7</option>
+        <option value="platoon8">Platoon 8</option>
+        <option value="platoon9">Platoon 9</option>
+        <option value="platoon10">Platoon 10</option>
+        <option value="platoon11">Platoon 11</option>
+        <option value="platoon12">Platoon 12</option>
+        <option value="platoon13">Platoon 13</option>
+        <option value="platoon14">Platoon 14</option>
+        <option value="platoon15">Platoon 15</option>
+        <option value="platoon16">Platoon 16</option>
+        <option value="platoon17">Platoon 17</option>
+        <option value="platoon18">Platoon 18</option>
+        <option value="platoon19">Platoon 19</option>
+        <option value="platoon20">Platoon 20</option>
+        <option value="platoon21">Platoon 21</option>
+        <option value="platoon22">Platoon 22</option>
+        <option value="platoon23">Platoon 23</option>
+        <option value="platoon24">Platoon 24</option>
+        <option value="platoon25">Platoon 25</option>
+        <option value="platoon26">Platoon 26</option>
+        <option value="platoon27">Platoon 27</option>
+        <option value="platoon28">Platoon 28</option>
+        <option value="platoon29">Platoon 29</option>
+        <option value="platoon30">Platoon 30</option>
+        <option value="platoon31">Platoon 31</option>
+        <option value="platoon32">Platoon 32</option>
+        <option value="platoon33">Platoon 33</option>
+        <option value="platoon34">Platoon 34</option>
+        <option value="platoon35">Platoon 35</option>
+        <option value="platoon36">Platoon 36</option>
+        <option value="platoon37">Platoon 37</option>
+        <option value="platoon38">Platoon 38</option>
+        <option value="platoon39">Platoon 39</option>
+        <option value="platoon40">Platoon 40</option>
+        <option value="platoon41">Platoon 41</option>
+        <option value="platoon42">Platoon 42</option>
+        <option value="platoon43">Platoon 43</option>
+        <option value="platoon44">Platoon 44</option>
+        <option value="platoon45">Platoon 45</option>
+        <option value="platoon46">Platoon 46</option>
+        <option value="platoon47">Platoon 47</option>
+        <option value="platoon48">Platoon 48</option>
+        <option value="platoon49">Platoon 49</option>
+        <option value="platoon50">Platoon 50</option>
+        <option value="platoon51">Platoon 51</option>
+        <option value="platoon52">Platoon 52</option>
+        <option value="platoon53">Platoon 53</option>
+        <option value="platoon54">Platoon 54</option>
+        <option value="platoon55">Platoon 55</option>
+        <option value="platoon56">Platoon 56</option>
+        <option value="platoon57">Platoon 57</option>
+        <option value="platoon58">Platoon 58</option>
+        <option value="platoon59">Platoon 59</option>
+        <option value="platoon60">Platoon 60</option>
+        <option value="platoon61">Platoon 61</option>
+        <option value="platoon62">Platoon 62</option>
+        <option value="platoon63">Platoon 63</option>
+        <option value="platoon64">Platoon 64</option>
+        <option value="platoon65">Platoon 65</option>
+        <option value="platoon66">Platoon 66</option>
+        <option value="platoon67">Platoon 67</option>
+        <option value="platoon68">Platoon 68</option>
+        <option value="platoon69">Platoon 69</option>
+        <option value="platoon70">Platoon 70</option>
+        <option value="echelon1">Echelon 1</option>
+        <option value="echelon2">Echelon 2</option>
+        <option value="echelon3">Echelon 3</option>
+        <option value="echelon4">Echelon 4</option>
+        <option value="echelon5">Echelon 5</option>
+        <option value="echelon6">Echelon 6</option>
+        <option value="echelon7">Echelon 7</option>
+        <option value="echelon8">Echelon 8</option>
+        <option value="echelon9">Echelon 9</option>
+        <option value="echelon10">Echelon 10</option>
+        <option value="echelon11">Echelon 11</option>
+        <option value="echelon12">Echelon 12</option>
+        <option value="echelon13">Echelon 13</option>
+        <option value="echelon14">Echelon 14</option>
+        <option value="echelon15">Echelon 15</option>
+        <option value="echelon16">Echelon 16</option>
+        <option value="echelon17">Echelon 17</option>
+        <option value="echelon18">Echelon 18</option>
+        <option value="echelon19">Echelon 19</option>
+        <option value="echelon20">Echelon 20</option>
+        <option value="echelon21">Echelon 21</option>
+        <option value="echelon22">Echelon 22</option>
+        <option value="echelon23">Echelon 23</option>
+        <option value="echelon24">Echelon 24</option>
+        <option value="echelon25">Echelon 25</option>
+        <option value="echelon26">Echelon 26</option>
+        <option value="echelon27">Echelon 27</option>
+        <option value="echelon28">Echelon 28</option>
+        <option value="echelon29">Echelon 29</option>
+        <option value="echelon30">Echelon 30</option>
+        <option value="iachairman">IA Chairman</option>
+        <option value="iavchairman">IA V-Chairman</option>
+        <option value="iamember">IA Member</option>
+        <option value="iaremoval">IA Removal</option>
+    </select>
+
+  <button id="search-button" type="submit">Submit</button>
+</form>
+<p id="type3-response"></p>`
         } else if (type == 4) {
           document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">MP Traffic Form</h3>
         <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
@@ -52,7 +196,7 @@
           <br>
           <button id="search-button" type="submit">Submit</button>
         </form>
-        <p id="type2-response"></p>`
+        <p id="type4-response"></p>`
         }
       }
 
@@ -113,13 +257,41 @@
           if (link == "") {
             var sanitizedResponse = sanitizeInput(result)
             document.getElementById('type2-response').innerHTML = sanitizedResponse;
-            console.log('Server Response:', sanitizedResponse);
+            console.log('Record Request Server Response: ', sanitizedResponse);
           } else {
             var sanitizedResponse = sanitizeInput(link)
             window.open(sanitizedResponse, "_blank")
             document.getElementById('type2-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
-            console.log('Server Response:', sanitizedResponse);
+            console.log('Record Request Server Response: ', sanitizedResponse);
           }
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+      }
+
+      function handleType3Form(event) {
+        event.preventDefault(); // Prevent default form submission
+        var username = document.getElementById('inputUsername').value; // Get username
+        var assignment = document.getElementById('inputAssignment').value; // Get assignment
+        console.log('Form Values: ', username, ' ', assignment);
+        // Add further processing logic here
+        document.getElementById('type3-response').innerHTML = 'Processing your request. This may take a few seconds...';
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(inputUsername)}&assignment=${encodeURIComponent(inputAssignment)}&type=3`, {
+          method: 'GET',
+          headers: {
+            'Referer': window.location.origin, // Add Referer header to verify request origin
+          },
+        }).then(response => {
+          if (response.ok) {
+            return response.json(); // Parse JSON response
+          } else {
+            throw new Error('Failed to fetch response.');
+          }
+        }).then(data => {
+          var result = data.result; // Store the response in the variable
+          var sanitizedResponse = sanitizeInput(result)
+          document.getElementById('type2-response').innerHTML = sanitizedResponse;
+          console.log('Database Assignment Server Response: ', sanitizedResponse);
         }).catch(error => {
           console.error('Error:', error);
         });
