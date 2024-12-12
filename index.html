@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD Access Terminal</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
       let randomNumber = localStorage.getItem('randomNumber');
@@ -27,7 +27,7 @@
           document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">Record of Performance and Conduct Request</h3>
         <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
           <label for="inputField">Subject's Username:</label><br><br>
-          <input type="text" id="inputField" name="inputField" required>
+          <input type="text" id="inputField" name="inputField" placeholder="Vasek_Stolba" required>
           <br>
           <br>
           <button id="search-button" type="submit">Submit</button>
@@ -41,7 +41,7 @@
     <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
 
     <label for="inputAssignment">Assignment:</label><br><br>
-    <select id="inputAssignment" name="inputAssignment" required>
+    <select id="inputAssignment" name="inputAssignment" style="height:30px" required>
         <option value="Unassigned">Unassigned</option>
         <option value="1st Battalion">1st Battalion</option>
         <option value="2nd Battalion">2nd Battalion</option>
