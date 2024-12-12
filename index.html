@@ -7,7 +7,6 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
-      let serverResponse2 = null; // Variable to store the server response
       let randomNumber = localStorage.getItem('randomNumber');
       let email = localStorage.getItem('email');
 
@@ -109,11 +108,18 @@
             throw new Error('Failed to fetch response.');
           }
         }).then(data => {
-          serverResponse2 = data.result; // Store the response in the variable
-          console.log('Server Response:', serverResponse2);
-          // Handle the response data as needed
-          const sanitizedResponse = sanitizeInput(serverResponse2);
-          document.getElementById('type2-response').innerHTML = sanitizedResponse;
+          var result = data.result; // Store the response in the variable
+          var link = data.link
+          if (link == "") {
+            var sanitizedResponse = sanitizeInput(result)
+            document.getElementById('type2-response').innerHTML = sanitizedResponse;
+            console.log('Server Response:', sanitizedResponse);
+          } else {
+            var sanitizedResponse = sanitizeInput(link)
+            window.open(sanitizedResponse, "_blank")
+            document.getElementById('type2-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}">this link</a>.`;
+            console.log('Server Response:', sanitizedResponse);
+          }
         }).catch(error => {
           console.error('Error:', error);
         });
