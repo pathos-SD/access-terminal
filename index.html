@@ -36,7 +36,7 @@
                 localStorage.setItem('email', email);
 
                 // Send the email and random number to your endpoint
-                fetch(`https://script.google.com/macros/s/YOUR_APP_SCRIPT_ID/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
+                fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
                     method: 'GET',
                 })
                 .then(response => {
