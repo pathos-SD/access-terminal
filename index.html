@@ -295,7 +295,7 @@
         }).then(data => {
           var result = data.result; // Store the response in the variable
           var sanitizedResponse = sanitizeInput(result)
-          document.getElementById('type2-response').innerHTML = sanitizedResponse;
+          document.getElementById('type3-response').innerHTML = sanitizedResponse;
           console.log('Database Assignment Server Response: ', sanitizedResponse);
         }).catch(error => {
           console.error('Error:', error);
