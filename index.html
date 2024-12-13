@@ -442,7 +442,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       }
 
       /* Style the search bar */
-      input {
+      input, select, textarea {
         width: 300px;
         height: 30px;
         border: 2px solid #ccc;
@@ -454,12 +454,12 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         color: #333;
       }
 
-      input:focus {
+      input:focus, select:focus, textarea:focus {
         outline: none;
         box-shadow: 0 0 2px 1px #337ab7;
       }
 
-      input::placeholder {
+      input::placeholder, textarea::placeholder {
         color: #999;
       }
 
