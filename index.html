@@ -215,15 +215,62 @@
 </form>
 <p id="type3-response"></p>`
         } else if (type == 4) {
-          document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">MP Traffic Form</h3>
-        <form id="type2-form" style="line-height:10px" onsubmit="handleType2Form(event)">
-          <label for="inputField">Enter the subject's username:</label><br><br>
-          <input type="text" id="inputField" name="inputField" required>
-          <br>
-          <br>
-          <button id="search-button" type="submit">Submit</button>
-        </form>
-        <p id="type4-response"></p>`
+          document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">MP Traffic Dashboard</h3>
+<form id="type4-form" style="line-height:10px" onsubmit="handleType4Form(event)">
+  <label for="inputusername">Defendant's Username:</label><br><br>
+  <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
+
+  <label for="">Charges:</label><br><br>
+  <input type="checkbox" id="checkbox_0" name="" value="Reckless Driving (a)">
+  <label for="checkbox_0">Reckless Driving (a)</label><br>
+  <input type="checkbox" id="checkbox_1" name="" value="Causing a Severe Collision by Reckless Driving (b)">
+  <label for="checkbox_1">Causing a Severe Collision by Reckless Driving (b)</label><br>
+  <input type="checkbox" id="checkbox_2" name="" value="Careless Driving (c)">
+  <label for="checkbox_2">Careless Driving (c)</label><br>
+  <input type="checkbox" id="checkbox_3" name="" value="Disobeying a traffic authority (d) i.">
+  <label for="checkbox_3">Disobeying a traffic authority (d) i.</label><br>
+  <input type="checkbox" id="checkbox_4" name="" value="Speeding around a traffic authority (d) ii.">
+  <label for="checkbox_4">Speeding around a traffic authority (d) ii.</label><br>
+  <input type="checkbox" id="checkbox_5" name="" value="Failure to yield (e)">
+  <label for="checkbox_5">Failure to yield (e)</label><br>
+  <input type="checkbox" id="checkbox_6" name="" value="Failure to yield to emergency vehicles (f)">
+  <label for="checkbox_6">Failure to yield to emergency vehicles (f)</label><br>
+  <input type="checkbox" id="checkbox_7" name="" value="Speeding (g)">
+  <label for="checkbox_7">Speeding (g)</label><br>
+  <input type="checkbox" id="checkbox_8" name="" value="Obstructing Traffic (h)">
+  <label for="checkbox_8">Obstructing Traffic (h)</label><br>
+  <input type="checkbox" id="checkbox_9" name="" value="Parking in an Improper Manner (i)">
+  <label for="checkbox_9">Parking in an Improper Manner (i)</label><br>
+  <input type="checkbox" id="checkbox_10" name="" value="Disobeying a Traffic Control Device (j)">
+  <label for="checkbox_10">Disobeying a Traffic Control Device (j)</label><br>
+  <input type="checkbox" id="checkbox_11" name="" value="Causing a Severe Collision (k)">
+  <label for="checkbox_11">Causing a Severe Collision (k)</label><br>
+  <input type="checkbox" id="checkbox_12" name="" value="Criminal Offense related to traffic (l)">
+  <label for="checkbox_12">Criminal Offense related to traffic (l)</label><br>
+  <input type="checkbox" id="checkbox_13" name="" value="Serious Criminal Offense related to traffic (m)">
+  <label for="checkbox_13">Serious Criminal Offense related to traffic (m)</label><br>
+  <input type="checkbox" id="checkbox_14" name="" value="Misuse of Emergency Equipment (n) i.">
+  <label for="checkbox_14">Misuse of Emergency Equipment (n) i.</label><br>
+  <input type="checkbox" id="checkbox_15" name="" value="Misuse of Miscellaneous Equipment (n) ii.">
+  <label for="checkbox_15">Misuse of Miscellaneous Equipment (n) ii.</label><br>
+  <input type="checkbox" id="checkbox_16" name="" value="Misuse of Aircrafts (n) iii.">
+  <label for="checkbox_16">Misuse of Aircrafts (n) iii.</label><br>
+  <input type="checkbox" id="checkbox_17" name="" value="Unauthorized Operation of Special Vehicles (o)">
+  <label for="checkbox_17">Unauthorized Operation of Special Vehicles (o)</label><br><br><br>
+
+  <label for="offenseSummary">Offense Summary:</label><br><br>
+  <textarea id="offenseSummary" name="offenseSummary" required></textarea><br><br><br>
+
+  <label for="evidence">Evidence:</label><br><br>
+  <textarea style="height:120px" id="evidence" name="evidence" placeholder="https://example.com/evidence-a
+https://example.com/evidence-b" required></textarea><br><br><br>
+
+  <label for="notes">Notes: (Optional)</label><br><br>
+  <input type="text" id="notes" name="notes" placeholder="The offender was ordered not to drive..."><br><br>
+
+  <button id="search-button" type="submit">Submit</button>
+</form>
+<p id="type4-response"></p>`
         }
       }
 
@@ -348,7 +395,7 @@
       }
 
       /* Style the search bar */
-      #inputField, #inputUsername, #inputAssignment {
+      input {
         width: 300px;
         height: 30px;
         border: 2px solid #ccc;
@@ -360,12 +407,12 @@
         color: #333;
       }
 
-      #inputField:focus, #inputUsername:focus, #inputAssignment:focus {
+      input:focus {
         outline: none;
         box-shadow: 0 0 2px 1px #337ab7;
       }
 
-      #inputField::placeholder, #inputUsername::placeholder {
+      input::placeholder {
         color: #999;
       }
 
