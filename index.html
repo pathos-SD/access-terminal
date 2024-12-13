@@ -370,6 +370,53 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           console.error('Error:', error);
         });
       }
+      
+      function handleType4Form(event) {
+        event.preventDefault()
+        document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
+        var i = 0
+        var charges = ""
+        while (i < 18) {
+          var checkbox = document.getElementById("checkbox_" + i)
+          if (checkbox.checked) {
+              if (charges == "") {
+                charges = checkbox.value
+              } else {
+                charges += ";" + checkbox.value
+              }
+          }
+          i = i+1
+        }
+        if (charges == "") {
+          document.getElementById("type4-response").innerHTML = "Select at least one charge."
+          return true
+        }
+        console.log(charges)
+        
+        var username = document.getElementById("inputUsername").value.replace(`
+        `, "\n")
+        var offenseSummary = document.getElementById("offenseSummary").value.replace(`
+        `, "\n")
+        var evidence = document.getElementById("evidence").value.replace(`
+        `, "\n")
+        var notes = document.getElementById("notes").value.replace(`
+        `, "\n")
+        
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
+          method: 'GET'
+        }).then(response => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            throw new Error ('Failed to fetch response.')
+          }
+        }).then(data => {
+          var sanitizedResponse = sanitizeInput(data.result)
+          document.getElementById("type4-response").innerHTML = sanitizedResponse
+        }).catch(error => {
+          console.error("Error:", error)
+        })
+    }
     </script>
     <style>
       .highlight {
