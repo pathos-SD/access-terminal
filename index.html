@@ -392,7 +392,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }
         console.log(charges)
         
-        var username = document.getElementById("inputUsername")
+        var username = document.getElementById("inputUsername").value
         if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
           document.getElementById("type4-response").innerHTML = "The username is invalid."
         }
