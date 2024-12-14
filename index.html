@@ -266,7 +266,7 @@
 https://example.com/evidence-b" required></textarea><br><br><br>
 
   <label for="notes">Notes:</label><br><br>
-  <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive..." required></textarea><br><br>
+  <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive..."></textarea><br><br>
 
   <button id="search-button" type="submit">Submit</button>
 </form>
@@ -394,7 +394,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         console.log(charges)
         
         var username = document.getElementById("inputUsername")
-        if (!"^[A-Za-z0-9_]{3,21}$".test(username)) {
+        if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
           document.getElementById("type4-response").innerHTML = "The username is invalid."
         }
         var offenseSummary = document.getElementById("offenseSummary").value.replace(`
