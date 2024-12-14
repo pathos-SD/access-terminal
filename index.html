@@ -259,14 +259,14 @@
   <label for="checkbox_17">Unauthorized Operation of Special Vehicles (o)</label><br><br><br>
 
   <label for="offenseSummary">Offense Summary:</label><br><br>
-  <textarea id="offenseSummary" name="offenseSummary" required></textarea><br><br><br>
+  <textarea style="height:120px" id="offenseSummary" name="offenseSummary" placeholder="As I was driving past the Epsilon × Phi × IC intersection, traveling in the direction from Site Epsilon, I observed the defendant, who was driving the vehicle ahead of me, fail to yield to oncoming traffic as he made a left turn, colliding with an oncoming vehicle." required></textarea><br><br><br>
 
-  <label for="evidence">Evidence:</label><br><br>
+  <label for="evidence">Evidence:<span style="font-size:10px"><br>Include nothing but links. Separate links by line breaks. One line per link.</span></label><br><br>
   <textarea style="height:120px" id="evidence" name="evidence" placeholder="https://example.com/evidence-a
 https://example.com/evidence-b" required></textarea><br><br><br>
 
-  <label for="notes">Notes: (Optional)</label><br><br>
-  <input type="text" id="notes" name="notes" placeholder="The offender was ordered not to drive..."><br><br>
+  <label for="notes">Notes:</label><br><br>
+  <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive..." required></textarea><br><br>
 
   <button id="search-button" type="submit">Submit</button>
 </form>
@@ -418,124 +418,124 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         })
     }
     </script>
-    <style>
-      .highlight {
-        background-color: #bf9000;
-      }
-
-      .highlight-red {
-        background-color: #990000;
-      }
-
-      a {
-        color: #efefef;
-      }
-
-      body {
-        background-color: #1e2328;
-        color: #efefef;
-        font-family: calibri;
-      }
-
-      /* Style the search bar */
-      input, select, textarea {
-        width: 300px;
-        height: 30px;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        padding: 5px 10px;
-        font-size: 16px;
-        font-weight: bold;
-        font-family: calibri;
-        color: #333;
-      }
-
-      input:focus, select:focus, textarea:focus {
-        outline: none;
-        box-shadow: 0 0 2px 1px #337ab7;
-      }
-
-      input::placeholder, textarea::placeholder {
-        color: #999;
-      }
-
-      input[type=checkbox] {
-        height: 20px;
-        width: 20px;
-        vertical-align: middle;
-        margin-bottom: 6px;
-      }      
-
-      /* Style the search button */
-      #search-button {
-        border: none;
-        border-radius: 10px;
-        padding: 5px 10px;
-        line-height: 30px;
-        background-color: #337ab7;
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        font-family: calibri;
-        cursor: pointer;
-      }
-
-      #search-button:hover {
-        background-color: #23527c;
-      }
-
-      #search-button:active {
-        background-color: #1d3f5b;
-      }
-
-      #search-button:focus {
-        outline: none;
-      }
-
-      #search-button:disabled {
-        background-color: #ccc;
-        color: #999;
-        cursor: not-allowed;
-      }
-      
-      #menu-button {
-        border: none;
-        border-radius: 10px;
-        padding: 5px 10px;
-        margin-top: 10px;
-        line-height: 30px;
-        background-color: #33b779;
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        font-family: calibri;
-        cursor: pointer;
-      }
-
-      #menu-button:hover {
-        background-color: #237c52;
-      }
-
-      #menu-button:active {
-        background-color: #1d5b3f;
-      }
-
-      #menu-button:focus {
-        outline: none;
-      }
-
-      #menu-button:disabled {
-        background-color: #ccc;
-        color: #999;
-        cursor: not-allowed;
-      }
-
-      hr.rounded {
-        border-top: 8px solid #337ab7;
-        border-bottom: 1px solid #337ab7;
-        border-radius: 5px;
-      }
-    </style>
+  <style>
+    .highlight {
+      background-color: #bf9000;
+    }
+  
+    .highlight-red {
+      background-color: #990000;
+    }
+  
+    a {
+      color: #efefef;
+    }
+  
+    body {
+      background-color: #1e2328;
+      color: #efefef;
+      font-family: calibri;
+    }
+  
+    /* Style the search bar */
+    input, select, textarea {
+      width: 300px;
+      height: 30px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: calibri;
+      color: #333;
+    }
+  
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 2px 1px #337ab7;
+    }
+  
+    input::placeholder, textarea::placeholder {
+      color: #999;
+    }
+  
+    input[type=checkbox] {
+      height: 20px;
+      width: 20px;
+      vertical-align: middle;
+      margin-bottom: 6px;
+    }      
+  
+    /* Style the search button */
+    #search-button {
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      line-height: 30px;
+      background-color: #337ab7;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: calibri;
+      cursor: pointer;
+    }
+  
+    #search-button:hover {
+      background-color: #23527c;
+    }
+  
+    #search-button:active {
+      background-color: #1d3f5b;
+    }
+  
+    #search-button:focus {
+      outline: none;
+    }
+  
+    #search-button:disabled {
+      background-color: #ccc;
+      color: #999;
+      cursor: not-allowed;
+    }
+    
+    #menu-button {
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      margin-top: 10px;
+      line-height: 30px;
+      background-color: #33b779;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: calibri;
+      cursor: pointer;
+    }
+  
+    #menu-button:hover {
+      background-color: #237c52;
+    }
+  
+    #menu-button:active {
+      background-color: #1d5b3f;
+    }
+  
+    #menu-button:focus {
+      outline: none;
+    }
+  
+    #menu-button:disabled {
+      background-color: #ccc;
+      color: #999;
+      cursor: not-allowed;
+    }
+  
+    hr.rounded {
+      border-top: 8px solid #337ab7;
+      border-bottom: 1px solid #337ab7;
+      border-radius: 5px;
+    }
+  </style>
   </head>
   <body onload="primary()">
     <h4 style="margin-bottom:0px">Authorization</h4>
