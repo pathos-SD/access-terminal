@@ -372,6 +372,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       }
       
       function handleType4Form(event) {
+        document.getElementById("search-button").disabled = true
         event.preventDefault()
         var i = 0
         var charges = ""
@@ -388,6 +389,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }
         if (charges == "") {
           document.getElementById("type4-response").innerHTML = "Select at least one charge."
+          document.getElementById("search-button").disabled = false
           return true
         }
         console.log(charges)
@@ -395,6 +397,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         var username = document.getElementById("inputUsername").value
         if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
           document.getElementById("type4-response").innerHTML = "The username is invalid."
+          document.getElementById("search-button").disabled = false
           return true
         }
         var offenseSummary = document.getElementById("offenseSummary").value.replace(`
@@ -416,6 +419,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }).then(data => {
           var sanitizedResponse = sanitizeInput(data.result)
           document.getElementById("type4-response").innerHTML = sanitizedResponse
+          document.getElementById("search-button").disabled = false
         }).catch(error => {
           console.error("Error:", error)
         })
