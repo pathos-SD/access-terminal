@@ -344,9 +344,15 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       }
 
       function handleType3Form(event) {
+        document.getElementById("search-button").disabled = true
         event.preventDefault(); // Prevent default form submission
         var username = document.getElementById('inputUsername').value; // Get username
         var assignment = document.getElementById('inputAssignment').value; // Get assignment
+        if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
+          document.getElementById("type3-response").innerHTML = "The username is invalid."
+          document.getElementById("search-button").disabled = false
+          return true
+        }
         console.log('Form Values: ', username, ' ', assignment);
         // Add further processing logic here
         document.getElementById('type3-response').innerHTML = 'Processing your request. This may take a few seconds...';
@@ -365,6 +371,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           var result = data.result; // Store the response in the variable
           var sanitizedResponse = sanitizeInput(result)
           document.getElementById('type3-response').innerHTML = sanitizedResponse;
+          document.getElementById("search-button").disabled = false
           console.log('Database Assignment Server Response: ', sanitizedResponse);
         }).catch(error => {
           console.error('Error:', error);
