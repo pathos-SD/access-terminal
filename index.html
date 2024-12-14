@@ -270,7 +270,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 
   <button id="search-button" type="submit">Submit</button>
 </form>
-<p id="type4-response"></p>`
+<p id="type4-response"><br></p>`
         }
       }
 
@@ -373,7 +373,6 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       
       function handleType4Form(event) {
         event.preventDefault()
-        document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
         var i = 0
         var charges = ""
         while (i < 18) {
@@ -404,6 +403,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         var notes = document.getElementById("notes").value.replace(`
         `, "\n")
         
+        document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
         fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
           method: 'GET'
         }).then(response => {
