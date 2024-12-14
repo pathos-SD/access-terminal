@@ -393,8 +393,10 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }
         console.log(charges)
         
-        var username = document.getElementById("inputUsername").value.replace(`
-        `, "\n")
+        var username = document.getElementById("inputUsername")
+        if (!"^[A-Za-z0-9_]{3,21}$".test(username)) {
+          document.getElementById("type4-response").innerHTML = "The username is invalid."
+        }
         var offenseSummary = document.getElementById("offenseSummary").value.replace(`
         `, "\n")
         var evidence = document.getElementById("evidence").value.replace(`
