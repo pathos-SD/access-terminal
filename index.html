@@ -12,7 +12,7 @@
 
       function primary() {      
         if ((!email) || (email == null)) {
-          document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy">here</a>.</span>`;
+          document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
         } else {
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&email=${encodeURIComponent(email)}&type=0`, {
           method: 'GET',
@@ -29,9 +29,9 @@
           var result = data.result; // Store the response in the variable
           console.log(result)
           if (result == "Failed") {
-                  document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy">here</a>.</span>`;
+                  document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
                 } else {
-                  document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy">here</a>.</span>`;
+                  document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
                   
                   document.getElementById('buttons').innerHTML = `          <button id="menu-button" onclick="handleMenu(3);" type="submit">Database Assignment Panel</button>
                   <button id="menu-button" onclick="handleMenu(2);" type="submit">Record of Performance and Conduct Request</button>
