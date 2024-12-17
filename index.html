@@ -390,7 +390,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           }
           i = i+1
         }
-        if (charges == []) {
+        if (!charges.length) {
           document.getElementById("type4-response").innerHTML = "Select at least one charge."
           document.getElementById("search-button").disabled = false
           return true
@@ -411,7 +411,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         `, "\n")
         
         document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
-        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(JSON.stringify(charges))}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
           method: 'GET'
         }).then(response => {
           if (response.ok) {
