@@ -382,15 +382,19 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         document.getElementById("search-button").disabled = true
         event.preventDefault()
         var i = 0
-        var charges = []
+        var charges = ""
         while (i < 18) {
           var checkbox = document.getElementById("checkbox_" + i)
           if (checkbox.checked) {
-            charges.push(checkbox.value)
+              if (charges == "") {
+                charges = checkbox.value
+              } else {
+                charges += ";" + checkbox.value
+              }
           }
           i = i+1
         }
-        if (!charges.length) {
+        if (charges == "") {
           document.getElementById("type4-response").innerHTML = "Select at least one charge."
           document.getElementById("search-button").disabled = false
           return true
@@ -411,7 +415,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         `, "\n")
         
         document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
-        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(JSON.stringify(charges))}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
           method: 'GET'
         }).then(response => {
           if (response.ok) {
