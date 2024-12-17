@@ -382,19 +382,15 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         document.getElementById("search-button").disabled = true
         event.preventDefault()
         var i = 0
-        var charges = ""
+        var charges = []
         while (i < 18) {
           var checkbox = document.getElementById("checkbox_" + i)
           if (checkbox.checked) {
-              if (charges == "") {
-                charges = checkbox.value
-              } else {
-                charges += "\n" + checkbox.value
-              }
+            charges.push(checkbox.value)
           }
           i = i+1
         }
-        if (charges == "") {
+        if (charges == []) {
           document.getElementById("type4-response").innerHTML = "Select at least one charge."
           document.getElementById("search-button").disabled = false
           return true
