@@ -223,8 +223,8 @@
         <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
         <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
         <h3 style="margin-bottom:15px">MP Traffic Look-Up</h3>
-        <form id="type42-form" style="line-height:10px" onsubmit="handleType4Form(event, 1)">
-        <label for="inputusername">Look-Up Type:</label><br><br>
+        <form id="type41-form" style="line-height:10px" onsubmit="handleType4Form(event, 1)">
+        <label for="lookupType">Look-Up Type:</label><br><br>
         <select id="lookupType" name="lookupType" onchange="handleMenu(value)" required>
             <option value="410"></option>
             <option value="411">Summary User Look-Up</option>
@@ -240,14 +240,14 @@
           document.getElementById('lookupInput').innerHTML = ``
         } else if ((type == 411)+(type == 413)) {
           document.getElementById('lookupInput').innerHTML = `                
-  <label for="inputUsername">Subject's Username:</label><br><br>
-  <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
+  <label for="inputQuery">Subject's Username:</label><br><br>
+  <input type="text" id="inputQuery" name="inputQuery" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
 
   <button id="search-button" type="submit">Submit</button>`
         } else if (type == 412) {
           document.getElementById('lookupInput').innerHTML = `                
-  <label for="refId">Reference Number:</label><br><br>
-  <input type="number" id="refId" name="refId" placeholder="321" required min="1" max="999"><br><br>
+  <label for="inputQuery">Reference Number:</label><br><br>
+  <input type="number" id="inputQuery" name="inputQuery" placeholder="321" required min="1" max="999"><br><br>
 
   <button id="search-button" type="submit">Submit</button>`
         } else if (type == 42) {
@@ -624,7 +624,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
     }
   </style>
   </head>
-  <body onload="primary">
+  <body onload="primary()">
     <h4 style="margin-bottom:0px">Authorization</h4>
       <p style="margin-top:5px" id="authorization-status">Loading...</p>
       <div id="g_id_onload" data-client_id="700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com" data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
