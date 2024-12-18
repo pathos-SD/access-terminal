@@ -387,8 +387,8 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       }
       
       function handleType4Form(event, subtype) {
-				if (subtype == 2) {
-					document.getElementById("search-button").disabled = true
+	if (subtype == 2) {
+		document.getElementById("search-button").disabled = true
 	        event.preventDefault()
 	        var i = 0
 	        var charges = ""
@@ -404,7 +404,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 	          i = i+1
 	        }
 	        if (charges == "") {
-	          document.getElementById("type4-response").innerHTML = "Select at least one charge."
+	          document.getElementById("type42-response").innerHTML = "Select at least one charge."
 	          document.getElementById("search-button").disabled = false
 	          return true
 	        }
@@ -412,19 +412,19 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 	        
 	        var username = document.getElementById("inputUsername").value
 	        if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
-	          document.getElementById("type4-response").innerHTML = "The username is invalid."
+	          document.getElementById("type42-response").innerHTML = "The username is invalid."
 	          document.getElementById("search-button").disabled = false
 	          return true
 	        }
 	        var offenseSummary = document.getElementById("offenseSummary").value.replace(`
-	        `, "\n")
+	        `, "\r")
 	        var evidence = document.getElementById("evidence").value.replace(`
-	        `, "\n")
+	        `, "\r")
 	        var notes = document.getElementById("notes").value.replace(`
-	        `, "\n")
+	        `, "\r")
 	        
-	        document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
-	        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
+	        document.getElementById("type42-response").innerHTML = "Processing your request. This may take a few seconds..."
+	        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=42`, {
 	          method: 'GET'
 	        }).then(response => {
 	          if (response.ok) {
@@ -434,12 +434,12 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 	          }
 	        }).then(data => {
 	          var sanitizedResponse = sanitizeInput(data.result)
-	          document.getElementById("type4-response").innerHTML = sanitizedResponse
+	          document.getElementById("type42-response").innerHTML = sanitizedResponse
 	          document.getElementById("search-button").disabled = false
 	        }).catch(error => {
 	          console.error("Error:", error)
 	        })
-				}
+	}
     }
     </script>
   <style>
