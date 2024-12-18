@@ -418,6 +418,30 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       }
       
       function handleType4Form(event, subtype) {
+        if (subtype == 1) {
+                document.getElementById("search-button").disabled = true
+	        event.preventDefault()
+
+                var lookupType = document.getElementById("lookupType").value
+                var lookupInput = document.getElementById("lookupInput").value
+
+                if (lookupType == 411) {
+                        if (!/^[A-Za-z0-9_]{3,21}$/.test(lookupInput)) {
+        	          document.getElementById("type41-response").innerHTML = "The username is invalid."
+        	          document.getElementById("search-button").disabled = false
+        	          return true
+	                }
+                } else if (lookupType == 412) {
+                        
+                } else if (lookupType == 413) {
+                        if (!/^[A-Za-z0-9_]{3,21}$/.test(lookupInput)) {
+        	          document.getElementById("type41-response").innerHTML = "The username is invalid."
+        	          document.getElementById("search-button").disabled = false
+        	          return true
+	                }
+                        
+                }
+        }
 	if (subtype == 2) {
 		document.getElementById("search-button").disabled = true
 	        event.preventDefault()
