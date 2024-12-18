@@ -215,8 +215,16 @@
 </form>
 <p id="type3-response"></p>`
         } else if (type == 4) {
-          document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">MP Traffic Dashboard</h3>
-<form id="type4-form" style="line-height:10px" onsubmit="handleType4Form(event)">
+          document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
+        <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
+        <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
+<p id="type4-response"><br></p>`
+        } else if (type == 42) {
+          document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
+        <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
+        <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
+<h3 style="margin-bottom:15px">MP Traffic Dashboard</h3>
+<form id="type42-form" style="line-height:10px" onsubmit="handleType4Form(event, 2)">
   <label for="inputusername">Defendant's Username:</label><br><br>
   <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
 
@@ -270,7 +278,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 
   <button id="search-button" type="submit">Submit</button>
 </form>
-<p id="type4-response"><br></p>`
+<p id="type42-response"><br></p>`
         }
       }
 
@@ -378,58 +386,60 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         });
       }
       
-      function handleType4Form(event) {
-        document.getElementById("search-button").disabled = true
-        event.preventDefault()
-        var i = 0
-        var charges = ""
-        while (i < 18) {
-          var checkbox = document.getElementById("checkbox_" + i)
-          if (checkbox.checked) {
-              if (charges == "") {
-                charges = checkbox.value
-              } else {
-                charges += ";" + checkbox.value
-              }
-          }
-          i = i+1
-        }
-        if (charges == "") {
-          document.getElementById("type4-response").innerHTML = "Select at least one charge."
-          document.getElementById("search-button").disabled = false
-          return true
-        }
-        console.log(charges)
-        
-        var username = document.getElementById("inputUsername").value
-        if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
-          document.getElementById("type4-response").innerHTML = "The username is invalid."
-          document.getElementById("search-button").disabled = false
-          return true
-        }
-        var offenseSummary = document.getElementById("offenseSummary").value.replace(`
-        `, "\n")
-        var evidence = document.getElementById("evidence").value.replace(`
-        `, "\n")
-        var notes = document.getElementById("notes").value.replace(`
-        `, "\n")
-        
-        document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
-        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
-          method: 'GET'
-        }).then(response => {
-          if (response.ok) {
-            return response.json()
-          } else {
-            throw new Error ('Failed to fetch response.')
-          }
-        }).then(data => {
-          var sanitizedResponse = sanitizeInput(data.result)
-          document.getElementById("type4-response").innerHTML = sanitizedResponse
-          document.getElementById("search-button").disabled = false
-        }).catch(error => {
-          console.error("Error:", error)
-        })
+      function handleType4Form(event, subtype) {
+				if (subtype == 2) {
+					document.getElementById("search-button").disabled = true
+	        event.preventDefault()
+	        var i = 0
+	        var charges = ""
+	        while (i < 18) {
+	          var checkbox = document.getElementById("checkbox_" + i)
+	          if (checkbox.checked) {
+	              if (charges == "") {
+	                charges = checkbox.value
+	              } else {
+	                charges += ";" + checkbox.value
+	              }
+	          }
+	          i = i+1
+	        }
+	        if (charges == "") {
+	          document.getElementById("type4-response").innerHTML = "Select at least one charge."
+	          document.getElementById("search-button").disabled = false
+	          return true
+	        }
+	        console.log(charges)
+	        
+	        var username = document.getElementById("inputUsername").value
+	        if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
+	          document.getElementById("type4-response").innerHTML = "The username is invalid."
+	          document.getElementById("search-button").disabled = false
+	          return true
+	        }
+	        var offenseSummary = document.getElementById("offenseSummary").value.replace(`
+	        `, "\n")
+	        var evidence = document.getElementById("evidence").value.replace(`
+	        `, "\n")
+	        var notes = document.getElementById("notes").value.replace(`
+	        `, "\n")
+	        
+	        document.getElementById("type4-response").innerHTML = "Processing your request. This may take a few seconds..."
+	        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=4`, {
+	          method: 'GET'
+	        }).then(response => {
+	          if (response.ok) {
+	            return response.json()
+	          } else {
+	            throw new Error ('Failed to fetch response.')
+	          }
+	        }).then(data => {
+	          var sanitizedResponse = sanitizeInput(data.result)
+	          document.getElementById("type4-response").innerHTML = sanitizedResponse
+	          document.getElementById("search-button").disabled = false
+	        }).catch(error => {
+	          console.error("Error:", error)
+	        })
+				}
     }
     </script>
   <style>
