@@ -431,14 +431,79 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         	          document.getElementById("search-button").disabled = false
         	          return true
 	                }
+		        document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
+		        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=411`, {
+		          method: 'GET'
+		        }).then(response => {
+		          if (response.ok) {
+		            return response.json()
+		          } else {
+		            throw new Error ('Failed to fetch response.')
+		          }
+		        }).then(data => {
+		          var sanitizedResponse = sanitizeInput(data.result)
+		          document.getElementById("type41-response").innerHTML = sanitizedResponse
+		          document.getElementById("search-button").disabled = false
+		        }).catch(error => {
+		          console.error("Error:", error)
+		        })
                 } else if (lookupType == 412) {
-                        
+		        document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
+		        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(lookupInput)}&type=412`, {
+		          method: 'GET'
+		        }).then(response => {
+		          if (response.ok) {
+		            return response.json()
+		          } else {
+		            throw new Error ('Failed to fetch response.')
+		          }
+		        }).then(data => {
+		          var result = data.result; // Store the response in the variable
+		          var link = data.link
+		          if (link == "") {
+		            var sanitizedResponse = sanitizeInput(result)
+		            document.getElementById('type41-response').innerHTML = sanitizedResponse;
+		            console.log('Traffic Server Response: ', sanitizedResponse);
+		          } else {
+		            var sanitizedResponse = sanitizeInput(link)
+		            window.open(sanitizedResponse, "_blank")
+		            document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+		            console.log('Traffic Server Response: ', sanitizedResponse);
+		          }
+		        }).catch(error => {
+		          console.error("Error:", error)
+		        })
                 } else if (lookupType == 413) {
                         if (!/^[A-Za-z0-9_]{3,21}$/.test(lookupInput)) {
         	          document.getElementById("type41-response").innerHTML = "The username is invalid."
         	          document.getElementById("search-button").disabled = false
         	          return true
 	                }
+		        document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
+		        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=413`, {
+		          method: 'GET'
+		        }).then(response => {
+		          if (response.ok) {
+		            return response.json()
+		          } else {
+		            throw new Error ('Failed to fetch response.')
+		          }
+		        }).then(data => {
+		          var result = data.result; // Store the response in the variable
+		          var link = data.link
+		          if (link == "") {
+		            var sanitizedResponse = sanitizeInput(result)
+		            document.getElementById('type41-response').innerHTML = sanitizedResponse;
+		            console.log('Traffic Server Response: ', sanitizedResponse);
+		          } else {
+		            var sanitizedResponse = sanitizeInput(link)
+		            window.open(sanitizedResponse, "_blank")
+		            document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+		            console.log('Traffic Server Response: ', sanitizedResponse);
+		          }
+		        }).catch(error => {
+		          console.error("Error:", error)
+		        })
                         
                 }
         }
