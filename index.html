@@ -442,7 +442,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 		          }
 		        }).then(data => {
 		          var sanitizedResponse = sanitizeInput(data.result)
-		          document.getElementById("type41-response").innerHTML = sanitizedResponse.replaceAll('&lt;br&gt;', '<br>')
+		          document.getElementById("type41-response").innerHTML = sanitizedResponse.replaceAll('&lt;br&gt;', '<br>').replaceAll('&lt;ul&gt;', '<ul>').replaceAll('&lt;/ul&gt;', '</ul>').replaceAll('&lt;li&gt;', '<li>').replaceAll('&lt;/li&gt;', '</li>')
 		          document.getElementById("search-button").disabled = false
 		        }).catch(error => {
 		          console.error("Error:", error)
