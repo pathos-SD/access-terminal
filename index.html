@@ -442,7 +442,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 		          }
 		        }).then(data => {
 		          var sanitizedResponse = sanitizeInput(data.result)
-		          document.getElementById("type41-response").innerHTML = sanitizedResponse
+		          document.getElementById("type41-response").innerHTML = sanitizedResponse.replaceAll('&lt;br&gt;', '<br>')
 		          document.getElementById("search-button").disabled = false
 		        }).catch(error => {
 		          console.error("Error:", error)
@@ -536,11 +536,11 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 	          document.getElementById("search-button").disabled = false
 	          return true
 	        }
-	        var offenseSummary = document.getElementById("offenseSummary").value.replace(`
+	        var offenseSummary = document.getElementById("offenseSummary").value.replaceAll(`
 	        `, "\r")
-	        var evidence = document.getElementById("evidence").value.replace(`
+	        var evidence = document.getElementById("evidence").value.replaceAll(`
 	        `, "\r")
-	        var notes = document.getElementById("notes").value.replace(`
+	        var notes = document.getElementById("notes").value.replaceAll(`
 	        `, "\r")
 	        
 	        document.getElementById("type42-response").innerHTML = "Processing your request. This may take a few seconds..."
