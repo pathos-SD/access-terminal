@@ -9,7 +9,7 @@
     <script>
       let randomNumber = localStorage.getItem('randomNumber');
       let email = localStorage.getItem('email');
-
+      
       function primary() {      
         if ((!email) || (email == null)) {
           document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
@@ -43,7 +43,7 @@
         });
         }
       }
-
+      
       function handleMenu(type) {
         if (type == 2) {
           document.getElementById('form-body').innerHTML = `        <h3 style="margin-bottom:15px">Record of Performance and Conduct Request</h3>
@@ -57,13 +57,13 @@
         <p id="type2-response"></p>`;
         } else if (type == 3) {
           document.getElementById('form-body').innerHTML = `<h3 style="margin-bottom:15px">Database Assignment Panel</h3>
-<form id="type3-form" style="line-height:10px" onsubmit="handleType3Form(event)">
-
-    <label for="inputUsername">Assignee's Username:</label><br><br>
-    <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
-
-    <label for="inputAssignment">Assignment:</label><br><br>
-    <select id="inputAssignment" name="inputAssignment" style="height:30px" required>
+      <form id="type3-form" style="line-height:10px" onsubmit="handleType3Form(event)">
+      
+      <label for="inputUsername">Assignee's Username:</label><br><br>
+      <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
+      
+      <label for="inputAssignment">Assignment:</label><br><br>
+      <select id="inputAssignment" name="inputAssignment" style="height:30px" required>
         <option value="Unassigned">Unassigned</option>
         <option value="1st Battalion">1st Battalion</option>
         <option value="2nd Battalion">2nd Battalion</option>
@@ -209,11 +209,11 @@
         <option value="IA V-Chairman">IA V-Chairman</option>
         <option value="IA Member">IA Member</option>
         <option value="IA Removal">IA Removal</option>
-    </select><br><br>
-
-  <button id="search-button" type="submit">Submit</button>
-</form>
-<p id="type3-response"></p>`
+      </select><br><br>
+      
+      <button id="search-button" type="submit">Submit</button>
+      </form>
+      <p id="type3-response"></p>`
         } else if (type == 4) {
           document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
         <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
@@ -232,7 +232,7 @@
             <option value="413">Full User Records</option>
         </select><br><br><br>
         <div id="lookupInput">
-
+      
         </div>
         </form>
         <p id="type41-response"><br></p>`
@@ -240,85 +240,85 @@
           document.getElementById('lookupInput').innerHTML = ``
         } else if ((type == 411)+(type == 413)) {
           document.getElementById('lookupInput').innerHTML = `                
-  <label for="inputQuery">Subject's Username:</label><br><br>
-  <input type="text" id="inputQuery" name="inputQuery" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
-
-  <button id="search-button" type="submit">Submit</button>`
+      <label for="inputQuery">Subject's Username:</label><br><br>
+      <input type="text" id="inputQuery" name="inputQuery" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
+      
+      <button id="search-button" type="submit">Submit</button>`
         } else if (type == 412) {
           document.getElementById('lookupInput').innerHTML = `                
-  <label for="inputQuery">Reference Number:</label><br><br>
-  <input type="number" id="inputQuery" name="inputQuery" placeholder="321" required min="1" max="999"><br><br>
-
-  <button id="search-button" type="submit">Submit</button>`
+      <label for="inputQuery">Reference Number:</label><br><br>
+      <input type="number" id="inputQuery" name="inputQuery" placeholder="321" required min="1" max="999"><br><br>
+      
+      <button id="search-button" type="submit">Submit</button>`
         } else if (type == 42) {
           document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
         <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
         <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
-<h3 style="margin-bottom:15px">MP Traffic Dashboard</h3>
-<form id="type42-form" style="line-height:10px" onsubmit="handleType4Form(event, 2)">
-  <label for="inputusername">Defendant's Username:</label><br><br>
-  <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
-
-  <label for="">Charges:</label><br><br>
-  <input type="checkbox" id="checkbox_0" name="" value="Reckless Driving (a)">
-  <label for="checkbox_0">Reckless Driving (a)</label><br>
-  <input type="checkbox" id="checkbox_1" name="" value="Causing a Severe Collision by Reckless Driving (b)">
-  <label for="checkbox_1">Causing a Severe Collision by Reckless Driving (b)</label><br>
-  <input type="checkbox" id="checkbox_2" name="" value="Careless Driving (c)">
-  <label for="checkbox_2">Careless Driving (c)</label><br>
-  <input type="checkbox" id="checkbox_3" name="" value="Disobeying a traffic authority (d) i.">
-  <label for="checkbox_3">Disobeying a traffic authority (d) i.</label><br>
-  <input type="checkbox" id="checkbox_4" name="" value="Speeding around a traffic authority (d) ii.">
-  <label for="checkbox_4">Speeding around a traffic authority (d) ii.</label><br>
-  <input type="checkbox" id="checkbox_5" name="" value="Failure to yield (e)">
-  <label for="checkbox_5">Failure to yield (e)</label><br>
-  <input type="checkbox" id="checkbox_6" name="" value="Failure to yield to emergency vehicles (f)">
-  <label for="checkbox_6">Failure to yield to emergency vehicles (f)</label><br>
-  <input type="checkbox" id="checkbox_7" name="" value="Speeding (g)">
-  <label for="checkbox_7">Speeding (g)</label><br>
-  <input type="checkbox" id="checkbox_8" name="" value="Obstructing Traffic (h)">
-  <label for="checkbox_8">Obstructing Traffic (h)</label><br>
-  <input type="checkbox" id="checkbox_9" name="" value="Parking in an Improper Manner (i)">
-  <label for="checkbox_9">Parking in an Improper Manner (i)</label><br>
-  <input type="checkbox" id="checkbox_10" name="" value="Disobeying a Traffic Control Device (j)">
-  <label for="checkbox_10">Disobeying a Traffic Control Device (j)</label><br>
-  <input type="checkbox" id="checkbox_11" name="" value="Causing a Severe Collision (k)">
-  <label for="checkbox_11">Causing a Severe Collision (k)</label><br>
-  <input type="checkbox" id="checkbox_12" name="" value="Criminal Offense related to traffic (l)">
-  <label for="checkbox_12">Criminal Offense related to traffic (l)</label><br>
-  <input type="checkbox" id="checkbox_13" name="" value="Serious Criminal Offense related to traffic (m)">
-  <label for="checkbox_13">Serious Criminal Offense related to traffic (m)</label><br>
-  <input type="checkbox" id="checkbox_14" name="" value="Misuse of Emergency Equipment (n) i.">
-  <label for="checkbox_14">Misuse of Emergency Equipment (n) i.</label><br>
-  <input type="checkbox" id="checkbox_15" name="" value="Misuse of Miscellaneous Equipment (n) ii.">
-  <label for="checkbox_15">Misuse of Miscellaneous Equipment (n) ii.</label><br>
-  <input type="checkbox" id="checkbox_16" name="" value="Misuse of Aircrafts (n) iii.">
-  <label for="checkbox_16">Misuse of Aircrafts (n) iii.</label><br>
-  <input type="checkbox" id="checkbox_17" name="" value="Unauthorized Operation of Special Vehicles (o)">
-  <label for="checkbox_17">Unauthorized Operation of Special Vehicles (o)</label><br><br><br>
-
-  <label for="offenseSummary">Offense Summary:</label><br><br>
-  <textarea style="height:120px" id="offenseSummary" name="offenseSummary" placeholder="As I was driving past the Epsilon × Phi × IC intersection, traveling in the direction from Site Epsilon, I observed the defendant, who was driving the vehicle ahead of me, fail to yield to oncoming traffic as he made a left turn, colliding with an oncoming vehicle." required></textarea><br><br><br>
-
-  <label for="evidence">Evidence:<span style="font-size:10px"><br>Include nothing but links. Separate links by line breaks. One line per link.</span></label><br><br>
-  <textarea style="height:120px" id="evidence" name="evidence" placeholder="https://example.com/evidence-a
-https://example.com/evidence-b" required></textarea><br><br><br>
-
-  <label for="notes">Notes:</label><br><br>
-  <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive..."></textarea><br><br>
-
-  <button id="search-button" type="submit">Submit</button>
-</form>
-<p id="type42-response"><br></p>`
+      <h3 style="margin-bottom:15px">MP Traffic Dashboard</h3>
+      <form id="type42-form" style="line-height:10px" onsubmit="handleType4Form(event, 2)">
+      <label for="inputusername">Defendant's Username:</label><br><br>
+      <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
+      
+      <label for="">Charges:</label><br><br>
+      <input type="checkbox" id="checkbox_0" name="" value="Reckless Driving (a)">
+      <label for="checkbox_0">Reckless Driving (a)</label><br>
+      <input type="checkbox" id="checkbox_1" name="" value="Causing a Severe Collision by Reckless Driving (b)">
+      <label for="checkbox_1">Causing a Severe Collision by Reckless Driving (b)</label><br>
+      <input type="checkbox" id="checkbox_2" name="" value="Careless Driving (c)">
+      <label for="checkbox_2">Careless Driving (c)</label><br>
+      <input type="checkbox" id="checkbox_3" name="" value="Disobeying a traffic authority (d) i.">
+      <label for="checkbox_3">Disobeying a traffic authority (d) i.</label><br>
+      <input type="checkbox" id="checkbox_4" name="" value="Speeding around a traffic authority (d) ii.">
+      <label for="checkbox_4">Speeding around a traffic authority (d) ii.</label><br>
+      <input type="checkbox" id="checkbox_5" name="" value="Failure to yield (e)">
+      <label for="checkbox_5">Failure to yield (e)</label><br>
+      <input type="checkbox" id="checkbox_6" name="" value="Failure to yield to emergency vehicles (f)">
+      <label for="checkbox_6">Failure to yield to emergency vehicles (f)</label><br>
+      <input type="checkbox" id="checkbox_7" name="" value="Speeding (g)">
+      <label for="checkbox_7">Speeding (g)</label><br>
+      <input type="checkbox" id="checkbox_8" name="" value="Obstructing Traffic (h)">
+      <label for="checkbox_8">Obstructing Traffic (h)</label><br>
+      <input type="checkbox" id="checkbox_9" name="" value="Parking in an Improper Manner (i)">
+      <label for="checkbox_9">Parking in an Improper Manner (i)</label><br>
+      <input type="checkbox" id="checkbox_10" name="" value="Disobeying a Traffic Control Device (j)">
+      <label for="checkbox_10">Disobeying a Traffic Control Device (j)</label><br>
+      <input type="checkbox" id="checkbox_11" name="" value="Causing a Severe Collision (k)">
+      <label for="checkbox_11">Causing a Severe Collision (k)</label><br>
+      <input type="checkbox" id="checkbox_12" name="" value="Criminal Offense related to traffic (l)">
+      <label for="checkbox_12">Criminal Offense related to traffic (l)</label><br>
+      <input type="checkbox" id="checkbox_13" name="" value="Serious Criminal Offense related to traffic (m)">
+      <label for="checkbox_13">Serious Criminal Offense related to traffic (m)</label><br>
+      <input type="checkbox" id="checkbox_14" name="" value="Misuse of Emergency Equipment (n) i.">
+      <label for="checkbox_14">Misuse of Emergency Equipment (n) i.</label><br>
+      <input type="checkbox" id="checkbox_15" name="" value="Misuse of Miscellaneous Equipment (n) ii.">
+      <label for="checkbox_15">Misuse of Miscellaneous Equipment (n) ii.</label><br>
+      <input type="checkbox" id="checkbox_16" name="" value="Misuse of Aircrafts (n) iii.">
+      <label for="checkbox_16">Misuse of Aircrafts (n) iii.</label><br>
+      <input type="checkbox" id="checkbox_17" name="" value="Unauthorized Operation of Special Vehicles (o)">
+      <label for="checkbox_17">Unauthorized Operation of Special Vehicles (o)</label><br><br><br>
+      
+      <label for="offenseSummary">Offense Summary:</label><br><br>
+      <textarea style="height:120px" id="offenseSummary" name="offenseSummary" placeholder="As I was driving past the Epsilon × Phi × IC intersection, traveling in the direction from Site Epsilon, I observed the defendant, who was driving the vehicle ahead of me, fail to yield to oncoming traffic as he made a left turn, colliding with an oncoming vehicle." required></textarea><br><br><br>
+      
+      <label for="evidence">Evidence:<span style="font-size:10px"><br>Include nothing but links. Separate links by line breaks. One line per link.</span></label><br><br>
+      <textarea style="height:120px" id="evidence" name="evidence" placeholder="https://example.com/evidence-a
+      https://example.com/evidence-b" required></textarea><br><br><br>
+      
+      <label for="notes">Notes:</label><br><br>
+      <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive..."></textarea><br><br>
+      
+      <button id="search-button" type="submit">Submit</button>
+      </form>
+      <p id="type42-response"><br></p>`
         }
       }
-
+      
       function sanitizeInput(input) {
         const div = document.createElement('div');
         div.textContent = input;
         return div.innerHTML;
       }
-
+      
       function handleCredentialResponse(response) {
         try {
           // Decode JWT to get the user's email
@@ -345,7 +345,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           console.error('Failed to parse credential response:', error);
         }
       }
-
+      
       function handleType2Form(event) {
         event.preventDefault(); // Prevent default form submission
         const inputValue = document.getElementById('inputField').value; // Get input field value
@@ -381,7 +381,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           console.error('Error:', error);
         });
       }
-
+      
       function handleType3Form(event) {
         document.getElementById("search-button").disabled = true
         event.preventDefault(); // Prevent default form submission
@@ -420,181 +420,177 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       function handleType4Form(event, subtype) {
         if (subtype == 1) {
                 document.getElementById("search-button").disabled = true
-	        event.preventDefault()
-
+         event.preventDefault()
+      
                 var lookupType = document.getElementById("lookupType").value
                 var lookupInput = document.getElementById("inputQuery").value
-
+      
                 if (lookupType == 411) {
                         if (!/^[A-Za-z0-9_]{3,21}$/.test(lookupInput)) {
         	          document.getElementById("type41-response").innerHTML = "The username is invalid."
         	          document.getElementById("search-button").disabled = false
         	          return true
-	                }
-		        document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
-		        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=411`, {
-		          method: 'GET'
-		        }).then(response => {
-		          if (response.ok) {
-		            return response.json()
-		          } else {
-		            throw new Error ('Failed to fetch response.')
-		          }
-		        }).then(data => {
-		          var sanitizedResponse = sanitizeInput(data.result)
-		          document.getElementById("type41-response").innerHTML = sanitizedResponse.replaceAll('&lt;br&gt;', '<br>').replaceAll('&lt;ul&gt;', '<ul>').replaceAll('&lt;/ul&gt;', '</ul>').replaceAll('&lt;li&gt;', '<li>').replaceAll('&lt;/li&gt;', '</li>').replaceAll(/TIMESTAMP:(\d+)/g, (_, unixTimestamp) => {
-				  let date = new Date(Number(unixTimestamp));
-				  let year = String(date.getFullYear())
-				  let month = String(date.getMonth()+1).padStart(2, '0')
-				  let day = String(date.getDate()).padStart(2, '0')
-				  let hours = String(date.getHours()).padStart(2, '0')
-				  let minutes = String(date.getMinutes()).padStart(2, '0')
-				  return `${year}/${month}/${day} ${hours}:${minutes}`
-				});
-		          document.getElementById("search-button").disabled = false
-		        }).catch(error => {
-		          console.error("Error:", error)
-		        })
+                 }
+          document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=411`, {
+            method: 'GET'
+          }).then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              throw new Error ('Failed to fetch response.')
+            }
+          }).then(data => {
+            var sanitizedResponse = sanitizeInput(data.result)
+            document.getElementById("type41-response").innerHTML = sanitizedResponse.replaceAll('&lt;br&gt;', '<br>').replaceAll('&lt;ul&gt;', '<ul>').replaceAll('&lt;/ul&gt;', '</ul>').replaceAll('&lt;li&gt;', '<li>').replaceAll('&lt;/li&gt;', '</li>').replaceAll(/TIMESTAMP:(\d+)/g, (_, unixTimestamp) => {
+      let date = new Date(Number(unixTimestamp));
+      let year = String(date.getFullYear())
+      let month = String(date.getMonth()+1).padStart(2, '0')
+      let day = String(date.getDate()).padStart(2, '0')
+      let hours = String(date.getHours()).padStart(2, '0')
+      let minutes = String(date.getMinutes()).padStart(2, '0')
+      return `${year}/${month}/${day} ${hours}:${minutes}`
+      });
+            document.getElementById("search-button").disabled = false
+          }).catch(error => {
+            console.error("Error:", error)
+          })
                 } else if (lookupType == 412) {
-		        document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
-		        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(lookupInput)}&type=412`, {
-		          method: 'GET'
-		        }).then(response => {
-		          if (response.ok) {
-		            return response.json()
-		          } else {
-		            throw new Error ('Failed to fetch response.')
-		          }
-		        }).then(data => {
-		          var result = data.result; // Store the response in the variable
-		          var link = data.link
-		          if (link == "") {
-		            var sanitizedResponse = sanitizeInput(result)
-		            document.getElementById('type41-response').innerHTML = sanitizedResponse;
-			    document.getElementById("search-button").disabled = false
-		            console.log('Traffic Server Response: ', sanitizedResponse);
-		          } else {
-		            var sanitizedResponse = sanitizeInput(link)
-		            window.open(sanitizedResponse, "_blank")
-		            document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
-			    document.getElementById("search-button").disabled = false
-		            console.log('Traffic Server Response: ', sanitizedResponse);
-		          }
-		        }).catch(error => {
-		          console.error("Error:", error)
-		        })
+          document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(lookupInput)}&type=412`, {
+            method: 'GET'
+          }).then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              throw new Error ('Failed to fetch response.')
+            }
+          }).then(data => {
+            var result = data.result; // Store the response in the variable
+            var link = data.link
+            if (link == "") {
+              var sanitizedResponse = sanitizeInput(result)
+              document.getElementById('type41-response').innerHTML = sanitizedResponse;
+       document.getElementById("search-button").disabled = false
+              console.log('Traffic Server Response: ', sanitizedResponse);
+            } else {
+              var sanitizedResponse = sanitizeInput(link)
+              window.open(sanitizedResponse, "_blank")
+              document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+       document.getElementById("search-button").disabled = false
+              console.log('Traffic Server Response: ', sanitizedResponse);
+            }
+          }).catch(error => {
+            console.error("Error:", error)
+          })
                 } else if (lookupType == 413) {
                         if (!/^[A-Za-z0-9_]{3,21}$/.test(lookupInput)) {
         	          document.getElementById("type41-response").innerHTML = "The username is invalid."
         	          document.getElementById("search-button").disabled = false
         	          return true
-	                }
-		        document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
-		        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=413`, {
-		          method: 'GET'
-		        }).then(response => {
-		          if (response.ok) {
-		            return response.json()
-		          } else {
-		            throw new Error ('Failed to fetch response.')
-		          }
-		        }).then(data => {
-		          var result = data.result; // Store the response in the variable
-		          var link = data.link
-		          if (link == "") {
-		            var sanitizedResponse = sanitizeInput(result)
-		            document.getElementById('type41-response').innerHTML = sanitizedResponse;
-			    document.getElementById("search-button").disabled = false
-		            console.log('Traffic Server Response: ', sanitizedResponse);
-		          } else {
-		            var sanitizedResponse = sanitizeInput(link)
-		            window.open(sanitizedResponse, "_blank")
-		            document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
-			    document.getElementById("search-button").disabled = false
-		            console.log('Traffic Server Response: ', sanitizedResponse);
-		          }
-		        }).catch(error => {
-		          console.error("Error:", error)
-		        })
+                 }
+          document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=413`, {
+            method: 'GET'
+          }).then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              throw new Error ('Failed to fetch response.')
+            }
+          }).then(data => {
+            var result = data.result; // Store the response in the variable
+            var link = data.link
+            if (link == "") {
+              var sanitizedResponse = sanitizeInput(result)
+              document.getElementById('type41-response').innerHTML = sanitizedResponse;
+       document.getElementById("search-button").disabled = false
+              console.log('Traffic Server Response: ', sanitizedResponse);
+            } else {
+              var sanitizedResponse = sanitizeInput(link)
+              window.open(sanitizedResponse, "_blank")
+              document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+       document.getElementById("search-button").disabled = false
+              console.log('Traffic Server Response: ', sanitizedResponse);
+            }
+          }).catch(error => {
+            console.error("Error:", error)
+          })
                         
                 }
         }
-	if (subtype == 2) {
-		document.getElementById("search-button").disabled = true
-	        event.preventDefault()
-	        var i = 0
-	        var charges = ""
-	        while (i < 18) {
-	          var checkbox = document.getElementById("checkbox_" + i)
-	          if (checkbox.checked) {
-	              if (charges == "") {
-	                charges = checkbox.value
-	              } else {
-	                charges += ";" + checkbox.value
-	              }
-	          }
-	          i = i+1
-	        }
-	        if (charges == "") {
-	          document.getElementById("type42-response").innerHTML = "Select at least one charge."
-	          document.getElementById("search-button").disabled = false
-	          return true
-	        }
-	        console.log(charges)
-	        
-	        var username = document.getElementById("inputUsername").value
-	        if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
-	          document.getElementById("type42-response").innerHTML = "The username is invalid."
-	          document.getElementById("search-button").disabled = false
-	          return true
-	        }
-	        var offenseSummary = document.getElementById("offenseSummary").value.replaceAll(`
-	        `, "\r")
-	        var evidence = document.getElementById("evidence").value.replaceAll(`
-	        `, "\r")
-	        var notes = document.getElementById("notes").value.replaceAll(`
-	        `, "\r")
-	        
-	        document.getElementById("type42-response").innerHTML = "Processing your request. This may take a few seconds..."
-	        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=42`, {
-	          method: 'GET'
-	        }).then(response => {
-	          if (response.ok) {
-	            return response.json()
-	          } else {
-	            throw new Error ('Failed to fetch response.')
-	          }
-	        }).then(data => {
-	          var sanitizedResponse = sanitizeInput(data.result)
-	          document.getElementById("type42-response").innerHTML = sanitizedResponse
-	          document.getElementById("search-button").disabled = false
-	        }).catch(error => {
-	          console.error("Error:", error)
-	        })
-	}
-    }
+      if (subtype == 2) {
+      document.getElementById("search-button").disabled = true
+         event.preventDefault()
+         var i = 0
+         var charges = ""
+         while (i < 18) {
+           var checkbox = document.getElementById("checkbox_" + i)
+           if (checkbox.checked) {
+               if (charges == "") {
+                 charges = checkbox.value
+               } else {
+                 charges += ";" + checkbox.value
+               }
+           }
+           i = i+1
+         }
+         if (charges == "") {
+           document.getElementById("type42-response").innerHTML = "Select at least one charge."
+           document.getElementById("search-button").disabled = false
+           return true
+         }
+         console.log(charges)
+         
+         var username = document.getElementById("inputUsername").value
+         if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
+           document.getElementById("type42-response").innerHTML = "The username is invalid."
+           document.getElementById("search-button").disabled = false
+           return true
+         }
+         var offenseSummary = document.getElementById("offenseSummary").value.replaceAll(`
+         `, "\r")
+         var evidence = document.getElementById("evidence").value.replaceAll(`
+         `, "\r")
+         var notes = document.getElementById("notes").value.replaceAll(`
+         `, "\r")
+         
+         document.getElementById("type42-response").innerHTML = "Processing your request. This may take a few seconds..."
+         fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=42`, {
+           method: 'GET'
+         }).then(response => {
+           if (response.ok) {
+             return response.json()
+           } else {
+             throw new Error ('Failed to fetch response.')
+           }
+         }).then(data => {
+           var sanitizedResponse = sanitizeInput(data.result)
+           document.getElementById("type42-response").innerHTML = sanitizedResponse
+           document.getElementById("search-button").disabled = false
+         }).catch(error => {
+           console.error("Error:", error)
+         })
+      }
+      }
     </script>
-  <style>
-    .highlight {
+    <style>
+      .highlight {
       background-color: #bf9000;
-    }
-  
-    .highlight-red {
+      }
+      .highlight-red {
       background-color: #990000;
-    }
-  
-    a {
+      }
+      a {
       color: #efefef;
-    }
-  
-    body {
+      }
+      body {
       background-color: #1e2328;
       color: #efefef;
       font-family: calibri;
-    }
-  
-    /* Style the search bar */
-    input, select, textarea {
+      }
+      /* Style the search bar */
+      input, select, textarea {
       width: 300px;
       height: 30px;
       border: 2px solid #ccc;
@@ -604,26 +600,22 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       font-weight: bold;
       font-family: calibri;
       color: #333;
-    }
-  
-    input:focus, select:focus, textarea:focus {
+      }
+      input:focus, select:focus, textarea:focus {
       outline: none;
       box-shadow: 0 0 2px 1px #337ab7;
-    }
-  
-    input::placeholder, textarea::placeholder {
+      }
+      input::placeholder, textarea::placeholder {
       color: #999;
-    }
-  
-    input[type=checkbox] {
+      }
+      input[type=checkbox] {
       height: 20px;
       width: 20px;
       vertical-align: middle;
       margin-bottom: 6px;
-    }      
-  
-    /* Style the search button */
-    #search-button {
+      }      
+      /* Style the search button */
+      #search-button {
       border: none;
       border-radius: 10px;
       padding: 5px 10px;
@@ -634,27 +626,22 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       font-weight: bold;
       font-family: calibri;
       cursor: pointer;
-    }
-  
-    #search-button:hover {
+      }
+      #search-button:hover {
       background-color: #23527c;
-    }
-  
-    #search-button:active {
+      }
+      #search-button:active {
       background-color: #1d3f5b;
-    }
-  
-    #search-button:focus {
+      }
+      #search-button:focus {
       outline: none;
-    }
-  
-    #search-button:disabled {
+      }
+      #search-button:disabled {
       background-color: #ccc;
       color: #999;
       cursor: not-allowed;
-    }
-    
-    #menu-button {
+      }
+      #menu-button {
       border: none;
       border-radius: 10px;
       padding: 5px 10px;
@@ -666,27 +653,22 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       font-weight: bold;
       font-family: calibri;
       cursor: pointer;
-    }
-  
-    #menu-button:hover {
+      }
+      #menu-button:hover {
       background-color: #237c52;
-    }
-  
-    #menu-button:active {
+      }
+      #menu-button:active {
       background-color: #1d5b3f;
-    }
-  
-    #menu-button:focus {
+      }
+      #menu-button:focus {
       outline: none;
-    }
-  
-    #menu-button:disabled {
+      }
+      #menu-button:disabled {
       background-color: #ccc;
       color: #999;
       cursor: not-allowed;
-    }
-	  
-    #traffic-button {
+      }
+      #traffic-button {
       border: none;
       border-radius: 10px;
       padding: 5px 10px;
@@ -698,42 +680,37 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       font-weight: bold;
       font-family: calibri;
       cursor: pointer;
-    }
-  
-    #traffic-button:hover {
+      }
+      #traffic-button:hover {
       background-color: #4d4d12;
-    }
-  
-    #traffic-button:active {
+      }
+      #traffic-button:active {
       background-color: #33330c;
-    }
-  
-    #traffic-button:focus {
+      }
+      #traffic-button:focus {
       outline: none;
-    }
-  
-    #traffic-button:disabled {
+      }
+      #traffic-button:disabled {
       background-color: #ccc;
       color: #999;
       cursor: not-allowed;
-    }
-  
-    hr.rounded {
+      }
+      hr.rounded {
       border-top: 8px solid #337ab7;
       border-bottom: 1px solid #337ab7;
       border-radius: 5px;
-    }
-  </style>
+      }
+    </style>
   </head>
   <body onload="primary()">
     <h4 style="margin-bottom:0px">Authorization</h4>
-      <p style="margin-top:5px" id="authorization-status">Loading...</p>
-      <div id="g_id_onload" data-client_id="700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com" data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
-      <div class="g_id_signin" data-type="standard"></div>
-      <hr class="rounded">
-      <div id="buttons">
-      </div>
-      <div id="form-body">
-      </div>
+    <p style="margin-top:5px" id="authorization-status">Loading...</p>
+    <div id="g_id_onload" data-client_id="700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com" data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
+    <div class="g_id_signin" data-type="standard"></div>
+    <hr class="rounded">
+    <div id="buttons">
+    </div>
+    <div id="form-body">
+    </div>
   </body>
 </html>
