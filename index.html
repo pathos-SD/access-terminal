@@ -471,11 +471,13 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 		          if (link == "") {
 		            var sanitizedResponse = sanitizeInput(result)
 		            document.getElementById('type41-response').innerHTML = sanitizedResponse;
+			    document.getElementById("search-button").disabled = false
 		            console.log('Traffic Server Response: ', sanitizedResponse);
 		          } else {
 		            var sanitizedResponse = sanitizeInput(link)
 		            window.open(sanitizedResponse, "_blank")
 		            document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+			    document.getElementById("search-button").disabled = false
 		            console.log('Traffic Server Response: ', sanitizedResponse);
 		          }
 		        }).catch(error => {
@@ -502,11 +504,13 @@ https://example.com/evidence-b" required></textarea><br><br><br>
 		          if (link == "") {
 		            var sanitizedResponse = sanitizeInput(result)
 		            document.getElementById('type41-response').innerHTML = sanitizedResponse;
+			    document.getElementById("search-button").disabled = false
 		            console.log('Traffic Server Response: ', sanitizedResponse);
 		          } else {
 		            var sanitizedResponse = sanitizeInput(link)
 		            window.open(sanitizedResponse, "_blank")
 		            document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+			    document.getElementById("search-button").disabled = false
 		            console.log('Traffic Server Response: ', sanitizedResponse);
 		          }
 		        }).catch(error => {
