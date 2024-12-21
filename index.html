@@ -310,89 +310,6 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       <button id="search-button" type="submit">Submit</button>
       </form>
       <p id="type42-response"><br></p>`
-        } else if (type == 431) {
-          document.getElementById('form-body').innerHTML = `      <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
-      <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
-      <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
-    <h3 style="margin-bottom:15px">MP Traffic Dashboard: Action Review</h3>
-    <form id="type43-form" style="line-height:10px" onsubmit="handleType4Form(event, 2)">
-
-    <label for="inputusername">Defendant's Username:</label><br><br>
-    <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
-    
-    <label for="">Charges:</label><br><br>
-    <input type="checkbox" id="checkbox_0" name="" value="Reckless Driving (a)">
-    <label for="checkbox_0">Reckless Driving (a)</label><br>
-    <input type="checkbox" id="checkbox_1" name="" value="Causing a Severe Collision by Reckless Driving (b)">
-    <label for="checkbox_1">Causing a Severe Collision by Reckless Driving (b)</label><br>
-    <input type="checkbox" id="checkbox_2" name="" value="Careless Driving (c)">
-    <label for="checkbox_2">Careless Driving (c)</label><br>
-    <input type="checkbox" id="checkbox_3" name="" value="Disobeying a traffic authority (d) i.">
-    <label for="checkbox_3">Disobeying a traffic authority (d) i.</label><br>
-    <input type="checkbox" id="checkbox_4" name="" value="Speeding around a traffic authority (d) ii.">
-    <label for="checkbox_4">Speeding around a traffic authority (d) ii.</label><br>
-    <input type="checkbox" id="checkbox_5" name="" value="Failure to yield (e)">
-    <label for="checkbox_5">Failure to yield (e)</label><br>
-    <input type="checkbox" id="checkbox_6" name="" value="Failure to yield to emergency vehicles (f)">
-    <label for="checkbox_6">Failure to yield to emergency vehicles (f)</label><br>
-    <input type="checkbox" id="checkbox_7" name="" value="Speeding (g)">
-    <label for="checkbox_7">Speeding (g)</label><br>
-    <input type="checkbox" id="checkbox_8" name="" value="Obstructing Traffic (h)">
-    <label for="checkbox_8">Obstructing Traffic (h)</label><br>
-    <input type="checkbox" id="checkbox_9" name="" value="Parking in an Improper Manner (i)">
-    <label for="checkbox_9">Parking in an Improper Manner (i)</label><br>
-    <input type="checkbox" id="checkbox_10" name="" value="Disobeying a Traffic Control Device (j)">
-    <label for="checkbox_10">Disobeying a Traffic Control Device (j)</label><br>
-    <input type="checkbox" id="checkbox_11" name="" value="Causing a Severe Collision (k)">
-    <label for="checkbox_11">Causing a Severe Collision (k)</label><br>
-    <input type="checkbox" id="checkbox_12" name="" value="Criminal Offense related to traffic (l)">
-    <label for="checkbox_12">Criminal Offense related to traffic (l)</label><br>
-    <input type="checkbox" id="checkbox_13" name="" value="Serious Criminal Offense related to traffic (m)">
-    <label for="checkbox_13">Serious Criminal Offense related to traffic (m)</label><br>
-    <input type="checkbox" id="checkbox_14" name="" value="Misuse of Emergency Equipment (n) i.">
-    <label for="checkbox_14">Misuse of Emergency Equipment (n) i.</label><br>
-    <input type="checkbox" id="checkbox_15" name="" value="Misuse of Miscellaneous Equipment (n) ii.">
-    <label for="checkbox_15">Misuse of Miscellaneous Equipment (n) ii.</label><br>
-    <input type="checkbox" id="checkbox_16" name="" value="Misuse of Aircrafts (n) iii.">
-    <label for="checkbox_16">Misuse of Aircrafts (n) iii.</label><br>
-    <input type="checkbox" id="checkbox_17" name="" value="Unauthorized Operation of Special Vehicles (o)">
-    <label for="checkbox_17">Unauthorized Operation of Special Vehicles (o)</label><br><br><br>
-    
-    <label for="offenseSummary">Offense Summary:</label><br><br>
-    <textarea style="height:120px" id="offenseSummary" name="offenseSummary" placeholder="As I was driving past the Epsilon × Phi × IC intersection, traveling in the direction from Site Epsilon, I observed the defendant, who was driving the vehicle ahead of me, fail to yield to oncoming traffic as he made a left turn, colliding with an oncoming vehicle." required></textarea><br><br><br>
-    
-    <label for="evidence">Evidence:<span style="font-size:10px"><br>Include nothing but links. Separate links by line breaks. One line per link.</span></label><br><br>
-    <textarea style="height:120px" id="evidence" name="evidence" placeholder="https://example.com/evidence-a
-https://example.com/evidence-b" required></textarea><br><br><br>
-    
-    <label for="notes">Officer Notes:</label><br><br>
-    <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive..."></textarea><br><br>
-
-    <hr class="rounded"><br><br>
-    <input type="checkbox" id="checkbox_supervisor" name="" value="makeSupervisor" checked="true">
-    <label for="checkbox_supervisor">Make me the case supervisor</label><br><br><br>
-
-    <label for="offenseSummary">Supervisor Notes:</label><br><br>
-    <textarea style="height:120px" id="supervisorNotes" name="supervisorNotes" placeholder="The evidence clearly demonstrates the suspect disobeying road markings and driving in the opposite lane consequently causing a vehicle incident, thus satisfying the charges pursuant to subsections (a) and (b) of the Traffic Code. The driver seems to be engaging in such a manner of driving frequently and persistently even after the incident, as further demonstrated by evidence B, satisfying the charge for reckless driving.
-
-Considering the circumstances and statutory limitations on the punishment for such offenses, I believe it is suitable to issue a 8 day suspension of driving privileges, as even though the severity of the conduct is high, a more severe punishment would be suitable primarily for worse offenses with bigger impact." required></textarea><br><br><br>
-    
-    <label for="evidence">Sentence:</label><br><br>
-    <select id="lookupType" name="lookupType" onchange="handleMenu(value)" required>
-      <option value="none"></option>
-      <option value="traffic warning">Traffic Warning</option>
-      <option value="suspension of driving privileges">Suspension</option>
-      <option value="revocation of driving privileges">Revocation</option>
-    </select><br><br><br>
-
-    <div id="sentenceDurationForm">
-      <label for="sentenceDuration">Sentence Duration:</label><br><br>
-      <input type="number" id="sentenceDuration" name="sentenceDuration" placeholder="5 (in days)" required min="1" max="10"><br><br>
-    </div>
-    
-    <button id="search-button" type="submit">Edit</button>
-    </form>
-    <p id="type43-response"><br></p>`
         }
       }
       
@@ -657,6 +574,89 @@ Considering the circumstances and statutory limitations on the punishment for su
          }).catch(error => {
            console.error("Error:", error)
          })
+      } else if (type == 431) {
+          document.getElementById('form-body').innerHTML = `      <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
+      <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
+      <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
+    <h3 style="margin-bottom:15px">MP Traffic Dashboard: Action Review</h3>
+    <form id="type43-form" style="line-height:10px" onsubmit="handleType4Form(event, 2)">
+
+    <label for="inputusername">Defendant's Username:</label><br><br>
+    <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
+    
+    <label for="">Charges:</label><br><br>
+    <input type="checkbox" id="checkbox_0" name="" value="Reckless Driving (a)">
+    <label for="checkbox_0">Reckless Driving (a)</label><br>
+    <input type="checkbox" id="checkbox_1" name="" value="Causing a Severe Collision by Reckless Driving (b)">
+    <label for="checkbox_1">Causing a Severe Collision by Reckless Driving (b)</label><br>
+    <input type="checkbox" id="checkbox_2" name="" value="Careless Driving (c)">
+    <label for="checkbox_2">Careless Driving (c)</label><br>
+    <input type="checkbox" id="checkbox_3" name="" value="Disobeying a traffic authority (d) i.">
+    <label for="checkbox_3">Disobeying a traffic authority (d) i.</label><br>
+    <input type="checkbox" id="checkbox_4" name="" value="Speeding around a traffic authority (d) ii.">
+    <label for="checkbox_4">Speeding around a traffic authority (d) ii.</label><br>
+    <input type="checkbox" id="checkbox_5" name="" value="Failure to yield (e)">
+    <label for="checkbox_5">Failure to yield (e)</label><br>
+    <input type="checkbox" id="checkbox_6" name="" value="Failure to yield to emergency vehicles (f)">
+    <label for="checkbox_6">Failure to yield to emergency vehicles (f)</label><br>
+    <input type="checkbox" id="checkbox_7" name="" value="Speeding (g)">
+    <label for="checkbox_7">Speeding (g)</label><br>
+    <input type="checkbox" id="checkbox_8" name="" value="Obstructing Traffic (h)">
+    <label for="checkbox_8">Obstructing Traffic (h)</label><br>
+    <input type="checkbox" id="checkbox_9" name="" value="Parking in an Improper Manner (i)">
+    <label for="checkbox_9">Parking in an Improper Manner (i)</label><br>
+    <input type="checkbox" id="checkbox_10" name="" value="Disobeying a Traffic Control Device (j)">
+    <label for="checkbox_10">Disobeying a Traffic Control Device (j)</label><br>
+    <input type="checkbox" id="checkbox_11" name="" value="Causing a Severe Collision (k)">
+    <label for="checkbox_11">Causing a Severe Collision (k)</label><br>
+    <input type="checkbox" id="checkbox_12" name="" value="Criminal Offense related to traffic (l)">
+    <label for="checkbox_12">Criminal Offense related to traffic (l)</label><br>
+    <input type="checkbox" id="checkbox_13" name="" value="Serious Criminal Offense related to traffic (m)">
+    <label for="checkbox_13">Serious Criminal Offense related to traffic (m)</label><br>
+    <input type="checkbox" id="checkbox_14" name="" value="Misuse of Emergency Equipment (n) i.">
+    <label for="checkbox_14">Misuse of Emergency Equipment (n) i.</label><br>
+    <input type="checkbox" id="checkbox_15" name="" value="Misuse of Miscellaneous Equipment (n) ii.">
+    <label for="checkbox_15">Misuse of Miscellaneous Equipment (n) ii.</label><br>
+    <input type="checkbox" id="checkbox_16" name="" value="Misuse of Aircrafts (n) iii.">
+    <label for="checkbox_16">Misuse of Aircrafts (n) iii.</label><br>
+    <input type="checkbox" id="checkbox_17" name="" value="Unauthorized Operation of Special Vehicles (o)">
+    <label for="checkbox_17">Unauthorized Operation of Special Vehicles (o)</label><br><br><br>
+    
+    <label for="offenseSummary">Offense Summary:</label><br><br>
+    <textarea style="height:120px" id="offenseSummary" name="offenseSummary" placeholder="As I was driving past the Epsilon × Phi × IC intersection, traveling in the direction from Site Epsilon, I observed the defendant, who was driving the vehicle ahead of me, fail to yield to oncoming traffic as he made a left turn, colliding with an oncoming vehicle." required></textarea><br><br><br>
+    
+    <label for="evidence">Evidence:<span style="font-size:10px"><br>Include nothing but links. Separate links by line breaks. One line per link.</span></label><br><br>
+    <textarea style="height:120px" id="evidence" name="evidence" placeholder="https://example.com/evidence-a
+https://example.com/evidence-b" required></textarea><br><br><br>
+    
+    <label for="notes">Officer Notes:</label><br><br>
+    <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive..."></textarea><br><br>
+
+    <hr class="rounded"><br><br>
+    <input type="checkbox" id="checkbox_supervisor" name="" value="makeSupervisor" checked="true">
+    <label for="checkbox_supervisor">Make me the case supervisor</label><br><br><br>
+
+    <label for="offenseSummary">Supervisor Notes:</label><br><br>
+    <textarea style="height:120px" id="supervisorNotes" name="supervisorNotes" placeholder="The evidence clearly demonstrates the suspect disobeying road markings and driving in the opposite lane consequently causing a vehicle incident, thus satisfying the charges pursuant to subsections (a) and (b) of the Traffic Code. The driver seems to be engaging in such a manner of driving frequently and persistently even after the incident, as further demonstrated by evidence B, satisfying the charge for reckless driving.
+
+Considering the circumstances and statutory limitations on the punishment for such offenses, I believe it is suitable to issue a 8 day suspension of driving privileges, as even though the severity of the conduct is high, a more severe punishment would be suitable primarily for worse offenses with bigger impact." required></textarea><br><br><br>
+    
+    <label for="evidence">Sentence:</label><br><br>
+    <select id="lookupType" name="lookupType" onchange="handleMenu(value)" required>
+      <option value="none"></option>
+      <option value="traffic warning">Traffic Warning</option>
+      <option value="suspension of driving privileges">Suspension</option>
+      <option value="revocation of driving privileges">Revocation</option>
+    </select><br><br><br>
+
+    <div id="sentenceDurationForm">
+      <label for="sentenceDuration">Sentence Duration:</label><br><br>
+      <input type="number" id="sentenceDuration" name="sentenceDuration" placeholder="5 (in days)" required min="1" max="10"><br><br>
+    </div>
+    
+    <button id="search-button" type="submit">Edit</button>
+    </form>
+    <p id="type43-response"><br></p>`
       }
       }
     </script>
