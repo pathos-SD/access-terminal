@@ -567,6 +567,9 @@ https://example.com/evidence-b" required></textarea><br><br><br>
          }).then(data => {
            var sanitizedResponse = sanitizeInput(data.result)
            document.getElementById("type42-response").innerHTML = sanitizedResponse
+           if (sanitizedResponse == "Your submission was successfully recorded in the traffic database.") {
+             document.getElementById("type42-form").reset()
+           }
            document.getElementById("search-button").disabled = false
          }).catch(error => {
            console.error("Error:", error)
