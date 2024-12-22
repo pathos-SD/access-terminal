@@ -884,7 +884,11 @@ Considering the circumstances and statutory limitations on the punishment for su
          `, "\r")
          var notes = document.getElementById("notes").value.replaceAll(`
          `, "\r")
-         var makeSupervisor = document.getElementById("checkbox_supervisor").checked
+         if (document.getElementById("checkbox_supervisor").checked) {
+           var makeSupervisor = "yes"
+         } else {
+           var makeSupervisor = "no"
+         }
          var supervisorNotes = document.getElementById("supervisorNotes").value.replaceAll(`
          `, "\r")
          var sentence = document.getElementById("sentence").value
