@@ -323,7 +323,8 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         </form>
         <p id="type43-response"><br></p>
         <button id="traffic-button" onclick="handleType4Form(433);" type="submit">List of Pending Cases</button>
-        <p id="type433-response"><br></p>`
+        <p id="type433-response"><br></p>
+        <p id="type4332-response"><br></p>`
         } else if ((type == "none")+(type == "traffic warning")+(type == "revocation of driving privileges")) {
             document.getElementById('sentenceDuration').value = ""
             document.getElementById('sentenceDuration').disabled = true
@@ -435,6 +436,146 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }).catch(error => {
           console.error('Error:', error);
         });
+      }
+
+      function handleType433Form(subtype, query) {
+        if (subtype == "view") {
+          document.getElementById("type4332-response").innerHTML = "Processing your request. This may take a few seconds..."
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(query)}&type=412`, {
+            method: 'GET'
+          }).then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              throw new Error ('Failed to fetch response.')
+            }
+          }).then(data => {
+            var result = data.result; // Store the response in the variable
+            var link = data.link
+            if (link == "") {
+              var sanitizedResponse = sanitizeInput(result)
+              document.getElementById('type4332-response').innerHTML = sanitizedResponse;
+              console.log('Traffic Server Response: ', sanitizedResponse);
+            } else {
+              var sanitizedResponse = sanitizeInput(link)
+              window.open(sanitizedResponse, "_blank")
+              document.getElementById('type4332-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+              console.log('Traffic Server Response: ', sanitizedResponse);
+            }
+          }).catch(error => {
+            console.error("Error:", error)
+          })
+        }
+        if (subtype == "edit") {
+        document.getElementById("type4332-response").innerHTML = "Processing your request. This may take a few seconds..."
+        var lookupInput = document.getElementById("inputCaseId").value
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(lookupInput)}&type=431`, {
+            method: 'GET'
+          }).then(response => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              throw new Error ('Failed to fetch response.')
+            }
+          }).then(data => {
+            if (data.message != "Success!") {
+              document.getElementById('type4332-response').innerHTML = data.message
+              return true
+            } else {
+              console.log(data.charges.includes("Reckless Driving (a)"))
+              document.getElementById('form-body').innerHTML = `      <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
+      <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
+      <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
+    <h3 style="margin-bottom:0px;padding-bottom:0px">MP Traffic Dashboard: Action Review</h3><p style="font-size:10px;margin-top:1px;padding-top:0px;margin-bottom:15px">Case <span id="editingCaseRefId">${data.refId}</span>, submitted by ${data.submittedBy}</p>
+    
+    <form id="type43-form" style="line-height:10px" onsubmit="handleType4Form(event, 432)">
+
+    <label for="inputusername">Defendant's Username:</label><br><br>
+    <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20" value="${data.defendantUser}"><br><br><br>
+    
+    <label for="">Charges:</label><br><br>
+    <input type="checkbox" id="checkbox_0" name="" value="Reckless Driving (a)" ${data.charges[0]}">
+    <label for="checkbox_0">Reckless Driving (a)</label><br>
+    <input type="checkbox" id="checkbox_1" name="" value="Causing a Severe Collision by Reckless Driving (b)" ${data.charges[1]}>
+    <label for="checkbox_1">Causing a Severe Collision by Reckless Driving (b)</label><br>
+    <input type="checkbox" id="checkbox_2" name="" value="Careless Driving (c)" ${data.charges[2]}>
+    <label for="checkbox_2">Careless Driving (c)</label><br>
+    <input type="checkbox" id="checkbox_3" name="" value="Disobeying a traffic authority (d) i." ${data.charges[3]}>
+    <label for="checkbox_3">Disobeying a traffic authority (d) i.</label><br>
+    <input type="checkbox" id="checkbox_4" name="" value="Speeding around a traffic authority (d) ii." ${data.charges[4]}>
+    <label for="checkbox_4">Speeding around a traffic authority (d) ii.</label><br>
+    <input type="checkbox" id="checkbox_5" name="" value="Failure to yield (e)" ${data.charges[5]}>
+    <label for="checkbox_5">Failure to yield (e)</label><br>
+    <input type="checkbox" id="checkbox_6" name="" value="Failure to yield to emergency vehicles (f)" ${data.charges[6]}>
+    <label for="checkbox_6">Failure to yield to emergency vehicles (f)</label><br>
+    <input type="checkbox" id="checkbox_7" name="" value="Speeding (g)" ${data.charges[7]}>
+    <label for="checkbox_7">Speeding (g)</label><br>
+    <input type="checkbox" id="checkbox_8" name="" value="Obstructing Traffic (h)" ${data.charges[8]}>
+    <label for="checkbox_8">Obstructing Traffic (h)</label><br>
+    <input type="checkbox" id="checkbox_9" name="" value="Parking in an Improper Manner (i)" ${data.charges[9]}>
+    <label for="checkbox_9">Parking in an Improper Manner (i)</label><br>
+    <input type="checkbox" id="checkbox_10" name="" value="Disobeying a Traffic Control Device (j)" ${data.charges[10]}>
+    <label for="checkbox_10">Disobeying a Traffic Control Device (j)</label><br>
+    <input type="checkbox" id="checkbox_11" name="" value="Causing a Severe Collision (k)" ${data.charges[11]}>
+    <label for="checkbox_11">Causing a Severe Collision (k)</label><br>
+    <input type="checkbox" id="checkbox_12" name="" value="Criminal Offense related to traffic (l)" ${data.charges[12]}>
+    <label for="checkbox_12">Criminal Offense related to traffic (l)</label><br>
+    <input type="checkbox" id="checkbox_13" name="" value="Serious Criminal Offense related to traffic (m)" ${data.charges[13]}>
+    <label for="checkbox_13">Serious Criminal Offense related to traffic (m)</label><br>
+    <input type="checkbox" id="checkbox_14" name="" value="Misuse of Emergency Equipment (n) i." ${data.charges[14]}>
+    <label for="checkbox_14">Misuse of Emergency Equipment (n) i.</label><br>
+    <input type="checkbox" id="checkbox_15" name="" value="Misuse of Miscellaneous Equipment (n) ii." ${data.charges[15]}>
+    <label for="checkbox_15">Misuse of Miscellaneous Equipment (n) ii.</label><br>
+    <input type="checkbox" id="checkbox_16" name="" value="Misuse of Aircrafts (n) iii." ${data.charges[16]}>
+    <label for="checkbox_16">Misuse of Aircrafts (n) iii.</label><br>
+    <input type="checkbox" id="checkbox_17" name="" value="Unauthorized Operation of Special Vehicles (o)" ${data.charges[17]}>
+    <label for="checkbox_17">Unauthorized Operation of Special Vehicles (o)</label><br><br><br>
+    
+    <label for="offenseSummary">Offense Summary:</label><br><br>
+    <textarea style="height:120px" id="offenseSummary" name="offenseSummary" placeholder="As I was driving past the Epsilon × Phi × IC intersection, traveling in the direction from Site Epsilon, I observed the defendant, who was driving the vehicle ahead of me, fail to yield to oncoming traffic as he made a left turn, colliding with an oncoming vehicle." required>${data.offSummary}</textarea><br><br><br>
+    
+    <label for="evidence">Evidence:<span style="font-size:10px"><br>Include nothing but links. Separate links by line breaks. One line per link.</span></label><br><br>
+    <textarea style="height:120px" id="evidence" name="evidence" placeholder="https://example.com/evidence-a
+https://example.com/evidence-b" required>${data.evidence}</textarea><br><br><br>
+    
+    <label for="notes">Officer Notes:</label><br><br>
+    <textarea style="height:60px" id="notes" name="notes" placeholder="(Optional) The offender was ordered not to drive...">${data.offNotes}</textarea><br><br>
+
+    <hr class="rounded"><br><br>
+    <input type="checkbox" id="checkbox_supervisor" name="" value="makeSupervisor" ${data.supervisorChecked}>
+    <label for="checkbox_supervisor">Make me the case supervisor</label><br><br><br>
+
+    <label for="offenseSummary">Supervisor Notes:</label><br><br>
+    <textarea style="height:120px" id="supervisorNotes" name="supervisorNotes" placeholder="The evidence clearly demonstrates the suspect disobeying road markings and driving in the opposite lane consequently causing a vehicle incident, thus satisfying the charges pursuant to subsections (a) and (b) of the Traffic Code. The driver seems to be engaging in such a manner of driving frequently and persistently even after the incident, as further demonstrated by evidence B, satisfying the charge for reckless driving.
+
+Considering the circumstances and statutory limitations on the punishment for such offenses, I believe it is suitable to issue a 8 day suspension of driving privileges, as even though the severity of the conduct is high, a more severe punishment would be suitable primarily for worse offenses with bigger impact." required>${data.supervisorNotes}</textarea><br><br><br>
+    
+    <label for="sentence">Sentence:</label><br><br>
+    <select id="sentence" name="sentence" onchange="handleMenu(value)" required>
+      <option value="none" ${data.sentence[0]}></option>
+      <option value="traffic warning" ${data.sentence[1]}>Traffic Warning</option>
+      <option value="suspension of driving privileges" ${data.sentence[2]}>Suspension</option>
+      <option value="revocation of driving privileges" ${data.sentence[3]}>Revocation</option>
+    </select><br><br><br>
+
+    <label for="sentenceDuration">Sentence Duration:</label><br><br>
+    <input type="number" id="sentenceDuration" name="sentenceDuration" value="${data.durationValue}" placeholder="in days)" required min="1" max="10" ${data.duration}><br><br><br>
+
+    <label for="status">Status:</label><br><br>
+    <select id="status" name="status" required>
+      <option value="Pending" ${data.status[0]}>Pending</option>
+      <option value="Valid" ${data.status[1]}>Valid</option>
+      <option value="Invalid" ${data.status[2]}>Invalid</option>
+    </select><br><br>
+    
+    <button id="search-button" type="submit">Edit</button>
+    </form>
+    <p id="type43-response"><br></p>`
+            }
+          }).catch(error => {
+            console.error("Error:", error)
+          })
+        }
       }
       
       function handleType4Form(event, subtype) {
