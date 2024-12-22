@@ -598,11 +598,14 @@ https://example.com/evidence-b" required></textarea><br><br><br>
             if (response.ok) {
               return response.json()
             } else {
+              document.getElementById("search-button").disabled = false
               throw new Error ('Failed to fetch response.')
             }
           }).then(data => {
             if (data.message != "Success!") {
               document.getElementById('type43-response').innerHTML = data.message
+              document.getElementById("search-button").disabled = false
+              return true
             } else {
               document.getElementById('form-body').innerHTML = `      <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
       <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
