@@ -674,7 +674,7 @@ https://example.com/evidence-b" required>${data.evidence}</textarea><br><br><br>
 
 Considering the circumstances and statutory limitations on the punishment for such offenses, I believe it is suitable to issue a 8 day suspension of driving privileges, as even though the severity of the conduct is high, a more severe punishment would be suitable primarily for worse offenses with bigger impact." required>${data.supervisorNotes}</textarea><br><br><br>
     
-    <label for="evidence">Sentence:</label><br><br>
+    <label for="sentence">Sentence:</label><br><br>
     <select id="sentence" name="sentence" onchange="handleMenu(value)" required>
       <option value="none" ${data.sentence[0]}></option>
       <option value="traffic warning" ${data.sentence[1]}>Traffic Warning</option>
@@ -684,6 +684,13 @@ Considering the circumstances and statutory limitations on the punishment for su
 
     <label for="sentenceDuration">Sentence Duration:</label><br><br>
     <input type="number" id="sentenceDuration" name="sentenceDuration" value="${data.durationValue}" placeholder="5 (in days)" required min="1" max="10" ${data.duration}><br><br>
+
+    <label for="status">Status:</label><br><br>
+    <select id="status" name="status" required>
+      <option value="Pending" ${data.status[0]}></option>
+      <option value="Valid" ${data.status[1]}>Traffic Warning</option>
+      <option value="Invalid" ${data.status[2]}>Suspension</option>
+    </select><br><br><br>
     
     <button id="search-button" type="submit">Edit</button>
     </form>
