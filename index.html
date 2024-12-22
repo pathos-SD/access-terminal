@@ -617,7 +617,8 @@ https://example.com/evidence-b" required></textarea><br><br><br>
               document.getElementById('form-body').innerHTML = `      <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
       <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
       <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
-    <h3 style="margin-bottom:15px">MP Traffic Dashboard: Action Review</h3>
+    <h3 style="margin-bottom:15px">MP Traffic Dashboard: Action Review</h3><p style="font-size:10px"><br>Case <div id="editingCaseRefId">${data.refId}</div>, submitted by ${data.submittedBy}</p>
+    
     <form id="type43-form" style="line-height:10px" onsubmit="handleType4Form(event, 432)">
 
     <label for="inputusername">Defendant's Username:</label><br><br>
@@ -705,6 +706,71 @@ Considering the circumstances and statutory limitations on the punishment for su
           }).catch(error => {
             console.error("Error:", error)
           })
+      }
+      if (subtype == 432) {
+      document.getElementById("search-button").disabled = true
+         event.preventDefault()
+         var i = 0
+         var charges = ""
+         while (i < 18) {
+           var checkbox = document.getElementById("checkbox_" + i)
+           if (checkbox.checked) {
+               if (charges == "") {
+                 charges = checkbox.value
+               } else {
+                 charges += ";" + checkbox.value
+               }
+           }
+           i = i+1
+         }
+         if (charges == "") {
+           document.getElementById("type43-response").innerHTML = "Select at least one charge."
+           document.getElementById("search-button").disabled = false
+           return true
+         }
+         console.log(charges)
+         
+         var username = document.getElementById("inputUsername").value
+         if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
+           document.getElementById("type43-response").innerHTML = "The username is invalid."
+           document.getElementById("search-button").disabled = false
+           return true
+         }
+         var offenseSummary = document.getElementById("offenseSummary").value.replaceAll(`
+         `, "\r")
+         var evidence = document.getElementById("evidence").value.replaceAll(`
+         `, "\r")
+         var notes = document.getElementById("notes").value.replaceAll(`
+         `, "\r")
+         var makeSupervisor = document.getElementById("checkbox_supervisor").checked
+         var supervisorNotes = document.getElementById("supervisorNotes").value.replaceAll(`
+         `, "\r")
+         var sentence = document.getElementById("sentence").value
+         var sentenceDuration = document.getElementById("sentenceDuration").value
+         var status = document.getElementById("status").value
+         var refId = document.getElementById("editingCaseRefId").innerHTML
+         
+         document.getElementById("type43-response").innerHTML = "Processing your request. This may take a few seconds..."
+         fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&makeSupervisor=${encodeURIComponent(makeSupervisor)}&supervisorNotes=${encodeURIComponent(supervisorNotes)}&sentence=${encodeURIComponent(sentence)}&sentenceDuration=${encodeURIComponent(sentenceDuration)}&status=${encodeURIComponent(status)}&refId=${encodeURIComponent(refId)}&type=432`, {
+           method: 'GET'
+         }).then(response => {
+           if (response.ok) {
+             return response.json()
+           } else {
+             throw new Error ('Failed to fetch response.')
+           }
+         }).then(data => {
+           var sanitizedResponse = sanitizeInput(data.result)
+           if (sanitizedResponse == `Case ${refId} was successfully edited in the traffic database.`) {
+             handleMenu(43)
+           } else {
+             document.getElementById("search-button").disabled = false
+           }
+           document.getElementById("type43-response").innerHTML = sanitizedResponse
+           
+         }).catch(error => {
+           console.error("Error:", error)
+         })
       }
       }
     </script>
