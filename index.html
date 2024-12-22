@@ -222,7 +222,7 @@
             document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
         <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
         <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
-        <h3 style="margin-bottom:15px">MP Traffic Look-Up</h3>
+        <h3 style="margin-bottom:15px">MP Traffic Dashboard: Look-Up</h3>
         <form id="type41-form" style="line-height:10px" onsubmit="handleType4Form(event, 1)">
         <label for="lookupType">Look-Up Type:</label><br><br>
         <select id="lookupType" name="lookupType" onchange="handleMenu(value)" required>
@@ -254,7 +254,7 @@
           document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
         <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
         <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
-      <h3 style="margin-bottom:15px">MP Traffic Dashboard</h3>
+      <h3 style="margin-bottom:15px">MP Traffic Dashboard: Action Submission</h3>
       <form id="type42-form" style="line-height:10px" onsubmit="handleType4Form(event, 2)">
       <label for="inputusername">Defendant's Username:</label><br><br>
       <input type="text" id="inputUsername" name="inputUsername" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
@@ -314,14 +314,16 @@ https://example.com/evidence-b" required></textarea><br><br><br>
             document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
         <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
         <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
-        <h3 style="margin-bottom:15px">MP Traffic Look-Up</h3>
+        <h3 style="margin-bottom:0px;padding-bottom:0px">MP Traffic Dashboard: Action Review</h3><p style="font-size:10px;margin-top:1px;padding-top:0px;margin-bottom:15px">Select the record you want to edit either by specifying the reference number or opening the List of Pending Cases.</p>
         <form id="type43-form" style="line-height:10px" onsubmit="handleType4Form(event, 431)">
-          <label for="inputCaseId">Reference Number:</label><br><br>
+          <label for="inputCaseId">Reference Number:<span style="font-size:10px"><br>The reference number of the case you want to edit.</span></label><br><br>
           <input type="number" id="inputCaseId" name="inputCaseId" placeholder="321" required min="1" max="999"><br><br>
       
-          <button id="search-button" type="submit">Submit</button>
+          <button id="search-button" type="submit">Select</button>
         </form>
-        <p id="type43-response"><br></p>`
+        <p id="type43-response"><br></p>
+        <h4 style="margin-bottom:10px;padding-bottom:0px">List of Pending Cases     <span onclick="handleType4Form(433)">[Open}</span></h3>
+        <p id="type433-response"><br></p>`
         } else if ((type == "none")+(type == "traffic warning")+(type == "revocation of driving privileges")) {
             document.getElementById('sentenceDuration').value = ""
             document.getElementById('sentenceDuration').disabled = true
