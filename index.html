@@ -607,6 +607,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
               document.getElementById("search-button").disabled = false
               return true
             } else {
+              console.log(data.charges.includes("Reckless Driving (a)"))
               document.getElementById('form-body').innerHTML = `      <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
       <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
       <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
