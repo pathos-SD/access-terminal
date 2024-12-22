@@ -468,8 +468,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }
         if (subtype == "edit") {
         document.getElementById("type4332-response").innerHTML = "Processing your request. This may take a few seconds..."
-        var lookupInput = document.getElementById("inputCaseId").value
-          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(lookupInput)}&type=431`, {
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(query)}&type=431`, {
             method: 'GET'
           }).then(response => {
             if (response.ok) {
