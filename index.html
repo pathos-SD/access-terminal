@@ -682,10 +682,8 @@ Considering the circumstances and statutory limitations on the punishment for su
       <option value="revocation of driving privileges" ${data.sentence[3]}>Revocation</option>
     </select><br><br><br>
 
-    <div id="sentenceDurationForm">
-      <label for="sentenceDuration">Sentence Duration:</label><br><br>
-      <input type="number" id="sentenceDuration" name="sentenceDuration" value="${data.duration}" placeholder="5 (in days)" required min="1" max="10"><br><br>
-    </div>
+    <label for="sentenceDuration">Sentence Duration:</label><br><br>
+    <input type="number" id="sentenceDuration" name="sentenceDuration" value="${data.durationValue}" placeholder="5 (in days)" required min="1" max="10" ${data.duration}><br><br>
     
     <button id="search-button" type="submit">Edit</button>
     </form>
