@@ -310,7 +310,19 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       <button id="search-button" type="submit">Submit</button>
       </form>
       <p id="type42-response"><br></p>`
-        }
+        } else if (type == 43) {
+            document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
+        <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
+        <button id="traffic-button" onclick="handleMenu(43);" type="submit">Action Review</button>
+        <h3 style="margin-bottom:15px">MP Traffic Look-Up</h3>
+        <form id="type43-form" style="line-height:10px" onsubmit="handleType4Form(event, 431)">
+          <label for="inputCaseId">Reference Number:</label><br><br>
+          <input type="number" id="inputCaseId" name="inputCaseId" placeholder="321" required min="1" max="999"><br><br>
+      
+          <button id="search-button" type="submit">Submit</button>
+        </form>
+        <p id="type43-response"><br></p>`
+        }                
       }
       
       function sanitizeInput(input) {
