@@ -322,7 +322,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           <button id="search-button" type="submit">Select</button>
         </form>
         <p id="type43-response"><br></p>
-        <button id="traffic-button" onclick="handleType4Form(433);" type="submit">List of Pending Cases</button>
+        <button id="traffic-button" onclick="handleType4Form("", 433)" type="submit">List of Pending Cases</button>
         <p id="type433-response"><br></p>
         <p id="type4332-response"><br></p>`
         } else if ((type == "none")+(type == "traffic warning")+(type == "revocation of driving privileges")) {
@@ -559,7 +559,7 @@ Considering the circumstances and statutory limitations on the punishment for su
     </select><br><br><br>
 
     <label for="sentenceDuration">Sentence Duration:</label><br><br>
-    <input type="number" id="sentenceDuration" name="sentenceDuration" value="${data.durationValue}" placeholder="in days)" required min="1" max="10" ${data.duration}><br><br><br>
+    <input type="number" id="sentenceDuration" name="sentenceDuration" value="${data.durationValue}" placeholder="(in days)" required min="1" max="10" ${data.duration}><br><br><br>
 
     <label for="status">Status:</label><br><br>
     <select id="status" name="status" required>
