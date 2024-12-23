@@ -451,17 +451,9 @@ https://example.com/evidence-b" required></textarea><br><br><br>
             }
           }).then(data => {
             var result = data.result; // Store the response in the variable
-            var link = data.link
-            if (link == "") {
-              var sanitizedResponse = sanitizeInput(result)
-              document.getElementById('type4332-response').innerHTML = sanitizedResponse;
-              console.log('Traffic Server Response: ', sanitizedResponse);
-            } else {
-              var sanitizedResponse = sanitizeInput(link)
-              window.open(sanitizedResponse, "_blank")
-              document.getElementById('type4332-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
-              console.log('Traffic Server Response: ', sanitizedResponse);
-            }
+            document.getElementById('type4332-response').innerHTML = result;
+            document.getElementById("search-button").disabled = false
+            console.log('Traffic Server Response: ', result);
           }).catch(error => {
             console.error("Error:", error)
           })
@@ -627,19 +619,9 @@ Considering the circumstances and statutory limitations on the punishment for su
             }
           }).then(data => {
             var result = data.result; // Store the response in the variable
-            var link = data.link
-            if (link == "") {
-              var sanitizedResponse = sanitizeInput(result)
-              document.getElementById('type41-response').innerHTML = sanitizedResponse;
-       document.getElementById("search-button").disabled = false
-              console.log('Traffic Server Response: ', sanitizedResponse);
-            } else {
-              var sanitizedResponse = sanitizeInput(link)
-              window.open(sanitizedResponse, "_blank")
-              document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
-       document.getElementById("search-button").disabled = false
-              console.log('Traffic Server Response: ', sanitizedResponse);
-            }
+            document.getElementById('type41-response').innerHTML = result;
+            document.getElementById("search-button").disabled = false
+            console.log('Traffic Server Response: ', result);
           }).catch(error => {
             console.error("Error:", error)
           })
