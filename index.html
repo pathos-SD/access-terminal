@@ -32,10 +32,29 @@
                   document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
                 } else {
                   document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
-                  
-                  document.getElementById('buttons').innerHTML = `          <button id="menu-button" onclick="handleMenu(3);" type="submit">Database Assignment Panel</button>
-                  <button id="menu-button" onclick="handleMenu(2);" type="submit">Record of Performance and Conduct Request</button>
-                  <button id="menu-button" onclick="handleMenu(4);" type="submit">MP Traffic Dashboard</button>`
+                  var parameter = window.location.href.split("?")[1]
+                  if (parameter == undefined) {
+                    document.getElementById('buttons').innerHTML = `          <button id="menu-button" onclick="handleMenu(3);" type="submit">Database Assignment Panel</button>
+                    <button id="menu-button" onclick="handleMenu(2);" type="submit">Record of Performance and Conduct Request</button>
+                    <button id="menu-button" onclick="handleMenu(4);" type="submit">MP Traffic Dashboard</button>`
+                  } else {
+                      document.getElementById("form-body").innerHTML = "Processing your request. This may take a few seconds..."
+                      fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(query)}&type=412P`, {
+                        method: 'GET'
+                      }).then(response => {
+                        if (response.ok) {
+                          return response.json()
+                        } else {
+                          throw new Error ('Failed to fetch response.')
+                        }
+                      }).then(data => {
+                        var result = data.result; // Store the response in the variable
+                        document.getElementById('form-body').innerHTML = result;
+                        console.log('Traffic Server Response: ', result);
+                      }).catch(error => {
+                        console.error("Error:", error)
+                      })
+                  }
                 }
                 return result; // Parse JSON response
         }).catch(error => {
