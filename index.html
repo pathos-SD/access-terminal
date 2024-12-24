@@ -353,12 +353,6 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }
       }
       
-      function sanitizeInput(input) {
-        const div = document.createElement('div');
-        div.textContent = input;
-        return div.innerHTML;
-      }
-      
       function handleCredentialResponse(response) {
         try {
           // Decode JWT to get the user's email
@@ -408,14 +402,12 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           var result = data.result; // Store the response in the variable
           var link = data.link
           if (link == "") {
-            var sanitizedResponse = sanitizeInput(result)
-            document.getElementById('type2-response').innerHTML = sanitizedResponse;
-            console.log('Record Request Server Response: ', sanitizedResponse);
+            document.getElementById('type2-response').innerHTML = result;
+            console.log('Record Request Server Response: ', result);
           } else {
-            var sanitizedResponse = sanitizeInput(link)
-            window.open(sanitizedResponse, "_blank")
-            document.getElementById('type2-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
-            console.log('Record Request Server Response: ', sanitizedResponse);
+            window.open(link, "_blank")
+            document.getElementById('type2-response').innerHTML = `If you were not automatically redirected, use <a href="${link}" target="_blank">this link</a>.`;
+            console.log('Record Request Server Response: ', link);
           }
         }).catch(error => {
           console.error('Error:', error);
@@ -448,10 +440,9 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           }
         }).then(data => {
           var result = data.result; // Store the response in the variable
-          var sanitizedResponse = sanitizeInput(result)
-          document.getElementById('type3-response').innerHTML = sanitizedResponse;
+          document.getElementById('type3-response').innerHTML = result;
           document.getElementById("search-button").disabled = false
-          console.log('Database Assignment Server Response: ', sanitizedResponse);
+          console.log('Database Assignment Server Response: ', result);
         }).catch(error => {
           console.error('Error:', error);
         });
@@ -612,8 +603,7 @@ Considering the circumstances and statutory limitations on the punishment for su
               throw new Error ('Failed to fetch response.')
             }
           }).then(data => {
-            var sanitizedResponse = sanitizeInput(data.result)
-            document.getElementById("type41-response").innerHTML = sanitizedResponse.replaceAll('&lt;br&gt;', '<br>').replaceAll('&lt;ul&gt;', '<ul>').replaceAll('&lt;/ul&gt;', '</ul>').replaceAll('&lt;li&gt;', '<li>').replaceAll('&lt;/li&gt;', '</li>').replaceAll(/TIMESTAMP:(\d+)/g, (_, unixTimestamp) => {
+            document.getElementById("type41-response").innerHTML = data.result.replaceAll(/TIMESTAMP:(\d+)/g, (_, unixTimestamp) => {
       let date = new Date(Number(unixTimestamp));
       let year = String(date.getFullYear())
       let month = String(date.getMonth()+1).padStart(2, '0')
@@ -663,16 +653,14 @@ Considering the circumstances and statutory limitations on the punishment for su
             var result = data.result; // Store the response in the variable
             var link = data.link
             if (link == "") {
-              var sanitizedResponse = sanitizeInput(result)
-              document.getElementById('type41-response').innerHTML = sanitizedResponse;
+              document.getElementById('type41-response').innerHTML = result;
        document.getElementById("search-button").disabled = false
-              console.log('Traffic Server Response: ', sanitizedResponse);
+              console.log('Traffic Server Response: ', result);
             } else {
-              var sanitizedResponse = sanitizeInput(link)
-              window.open(sanitizedResponse, "_blank")
-              document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${sanitizedResponse}" target="_blank">this link</a>.`;
+              window.open(link, "_blank")
+              document.getElementById('type41-response').innerHTML = `If you were not automatically redirected, use <a href="${link}" target="_blank">this link</a>.`;
        document.getElementById("search-button").disabled = false
-              console.log('Traffic Server Response: ', sanitizedResponse);
+              console.log('Traffic Server Response: ', link);
             }
           }).catch(error => {
             console.error("Error:", error)
@@ -726,9 +714,8 @@ Considering the circumstances and statutory limitations on the punishment for su
              throw new Error ('Failed to fetch response.')
            }
          }).then(data => {
-           var sanitizedResponse = sanitizeInput(data.result)
-           document.getElementById("type42-response").innerHTML = sanitizedResponse
-           if (sanitizedResponse == "Your submission was successfully recorded in the traffic database.") {
+           document.getElementById("type42-response").innerHTML = data.result
+           if (data.result == "Your submission was successfully recorded in the traffic database.") {
              document.getElementById("type42-form").reset()
            }
            document.getElementById("search-button").disabled = false
@@ -908,13 +895,12 @@ Considering the circumstances and statutory limitations on the punishment for su
              throw new Error ('Failed to fetch response.')
            }
          }).then(data => {
-           var sanitizedResponse = sanitizeInput(data.result)
-           if (sanitizedResponse == `Case ${refId} was successfully edited in the traffic database.`) {
+           if (data.result == `Case ${refId} was successfully edited in the traffic database.`) {
              handleMenu(43)
            } else {
              document.getElementById("search-button").disabled = false
            }
-           document.getElementById("type43-response").innerHTML = sanitizedResponse
+           document.getElementById("type43-response").innerHTML = data.result
            
          }).catch(error => {
            console.error("Error:", error)
