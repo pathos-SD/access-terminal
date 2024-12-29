@@ -382,6 +382,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
       }
       
       function handleType2Form(event) {
+        document.getElementById("search-button").disabled = true
         event.preventDefault(); // Prevent default form submission
         const inputValue = document.getElementById('inputField').value; // Get input field value
         let formValue = inputValue; // Variable to work with in the function
@@ -401,15 +402,9 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           }
         }).then(data => {
           var result = data.result; // Store the response in the variable
-          var link = data.link
-          if (link == "") {
-            document.getElementById('type2-response').innerHTML = result;
-            console.log('Record Request Server Response: ', result);
-          } else {
-            window.open(link, "_blank")
-            document.getElementById('type2-response').innerHTML = `If you were not automatically redirected, use <a href="${link}" target="_blank">this link</a>.`;
-            console.log('Record Request Server Response: ', link);
-          }
+          document.getElementById('type2-response').innerHTML = result;
+          document.getElementById("search-button").disabled = false
+          console.log('Record Request Server Response: ', result);
         }).catch(error => {
           console.error('Error:', error);
         });
