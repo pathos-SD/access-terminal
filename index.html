@@ -258,7 +258,7 @@
         <p id="type4332-response"><br></p>`
         } else if (type == 410) {
           document.getElementById('lookupInput').innerHTML = ``
-        } else if ((type == 411)+(type == 413)) {
+        } else if (type == 411) {
           document.getElementById('lookupInput').innerHTML = `                
       <label for="inputQuery">Subject's Username:</label><br><br>
       <input type="text" id="inputQuery" name="inputQuery" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
@@ -270,6 +270,12 @@
       <input type="number" id="inputQuery" name="inputQuery" placeholder="321" required min="1" max="999"><br><br>
       
       <button id="search-button" type="submit">Submit</button>`
+        } else if (type == 413) {
+          document.getElementById('lookupInput').innerHTML = `                
+      <label for="inputQuery">Subject's Username:</label><br><br>
+      <input type="text" id="inputQuery" name="inputQuery" placeholder="Vasek_Stolba" required maxlength="20"><br><br>
+      
+      <button id="search-button" type="submit" disabled>Submit</button><span style="font-size:10px"><br>This feature is not functional at this time.</span>`
         } else if (type == 42) {
           document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
         <button id="traffic-button" onclick="handleMenu(42);" type="submit">Action Submission</button>
