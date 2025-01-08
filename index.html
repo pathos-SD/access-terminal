@@ -15,7 +15,7 @@
           document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
         } else {
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&email=${encodeURIComponent(email)}&type=0`, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Referer': window.location.origin, // Add Referer header to verify request origin
           },
@@ -40,7 +40,7 @@
                   } else {
                       document.getElementById("form-body").innerHTML = "Processing your request. This may take a few seconds..."
                       fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(parameter)}&type=412P`, {
-                        method: 'GET'
+                        method: 'POST'
                       }).then(response => {
                         if (response.ok) {
                           return response.json()
@@ -370,7 +370,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           localStorage.setItem('email', email);
           // Send the email and random number to your endpoint
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
-            method: 'GET',
+            method: 'POST',
           }).then(response => {
             if (response.ok) {
               console.log(response)
@@ -396,7 +396,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         // Add further processing logic here
         document.getElementById('type2-response').innerHTML = 'Processing your request. This may take a few seconds...';
         fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&value=${encodeURIComponent(inputValue)}&type=2`, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Referer': window.location.origin, // Add Referer header to verify request origin
           },
@@ -430,7 +430,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         // Add further processing logic here
         document.getElementById('type3-response').innerHTML = 'Processing your request. This may take a few seconds...';
         fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&assignment=${encodeURIComponent(assignment)}&type=3`, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Referer': window.location.origin, // Add Referer header to verify request origin
           },
@@ -454,7 +454,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         if (subtype == "view") {
           document.getElementById("type4332-response").innerHTML = "Processing your request. This may take a few seconds..."
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(query)}&type=412`, {
-            method: 'GET'
+            method: 'POST'
           }).then(response => {
             if (response.ok) {
               return response.json()
@@ -473,7 +473,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         if (subtype == "edit") {
         document.getElementById("type4332-response").innerHTML = "Processing your request. This may take a few seconds..."
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(query)}&type=431`, {
-            method: 'GET'
+            method: 'POST'
           }).then(response => {
             if (response.ok) {
               return response.json()
@@ -597,7 +597,7 @@ Considering the circumstances and statutory limitations on the punishment for su
                  }
           document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=411`, {
-            method: 'GET'
+            method: 'POST'
           }).then(response => {
             if (response.ok) {
               return response.json()
@@ -621,7 +621,7 @@ Considering the circumstances and statutory limitations on the punishment for su
                 } else if (lookupType == 412) {
           document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(lookupInput)}&type=412`, {
-            method: 'GET'
+            method: 'POST'
           }).then(response => {
             if (response.ok) {
               return response.json()
@@ -644,7 +644,7 @@ Considering the circumstances and statutory limitations on the punishment for su
                  }
           document.getElementById("type41-response").innerHTML = "Processing your request. This may take a few seconds..."
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(lookupInput)}&type=413`, {
-            method: 'GET'
+            method: 'POST'
           }).then(response => {
             if (response.ok) {
               return response.json()
@@ -708,7 +708,7 @@ Considering the circumstances and statutory limitations on the punishment for su
          
          document.getElementById("type42-response").innerHTML = "Processing your request. This may take a few seconds..."
          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&type=42`, {
-           method: 'GET'
+           method: 'POST'
          }).then(response => {
            if (response.ok) {
              return response.json()
@@ -731,7 +731,7 @@ Considering the circumstances and statutory limitations on the punishment for su
         document.getElementById("type43-response").innerHTML = "Processing your request. This may take a few seconds..."
         var lookupInput = document.getElementById("inputCaseId").value
           fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&caseId=${encodeURIComponent(lookupInput)}&type=431`, {
-            method: 'GET'
+            method: 'POST'
           }).then(response => {
             if (response.ok) {
               return response.json()
@@ -889,7 +889,7 @@ Considering the circumstances and statutory limitations on the punishment for su
          document.getElementById("type43-response").innerHTML = "Processing your request. This may take a few seconds..."
          console.log(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&makeSupervisor=${encodeURIComponent(makeSupervisor)}&supervisorNotes=${encodeURIComponent(supervisorNotes)}&sentence=${encodeURIComponent(sentence)}&sentenceDuration=${encodeURIComponent(sentenceDuration)}&status=${encodeURIComponent(status)}&refId=${encodeURIComponent(refId)}&type=432`)
          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&charges=${encodeURIComponent(charges)}&offSummary=${encodeURIComponent(offenseSummary)}&evidence=${encodeURIComponent(evidence)}&notes=${encodeURIComponent(notes)}&makeSupervisor=${encodeURIComponent(makeSupervisor)}&supervisorNotes=${encodeURIComponent(supervisorNotes)}&sentence=${encodeURIComponent(sentence)}&sentenceDuration=${encodeURIComponent(sentenceDuration)}&status=${encodeURIComponent(status)}&refId=${encodeURIComponent(refId)}&type=432`, {
-           method: 'GET'
+           method: 'POST'
          }).then(response => {
            if (response.ok) {
              return response.json()
@@ -911,7 +911,7 @@ Considering the circumstances and statutory limitations on the punishment for su
       if (subtype == 433) {        
          document.getElementById("type433-response").innerHTML = "Processing your request. This may take a few seconds..."
          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&type=433`, {
-           method: 'GET'
+           method: 'POST'
          }).then(response => {
            if (response.ok) {
              return response.json()
