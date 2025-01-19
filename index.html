@@ -232,6 +232,19 @@
       
       <button id="search-button" type="submit">Submit</button>
       </form>
+      <hr class="rounded"><br><br>
+      <h3 style="margin-bottom:15px">Email Assignment Panel</h3>
+      <form id="type32-form" style="line-height:10px" onsubmit="handleType32Form(event)">
+      
+      <label for="inputUsername2">Assignee's Username:</label><br><br>
+      <input type="text" id="inputUsername2" name="inputUsername2" placeholder="Vasek_Stolba" required maxlength="20"><br><br><br>
+      
+      <label for="inputEmail">Gmail:</label><br><br>
+      <input type="email" id="inputEmail" name="inputEmail" placeholder="abc@gmail.com" required maxlength="20"><br><br>
+      
+      <button id="search-button2" type="submit">Submit</button>
+      </form>
+      
       <p id="type3-response"></p>`
         } else if (type == 4) {
           document.getElementById('form-body').innerHTML = `                <button id="traffic-button" onclick="handleMenu(41);" type="submit">Look-Up</button>
@@ -429,7 +442,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         console.log('Form Values: ', username, ' ', assignment);
         // Add further processing logic here
         document.getElementById('type3-response').innerHTML = 'Processing your request. This may take a few seconds...';
-        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&assignment=${encodeURIComponent(assignment)}&type=3`, {
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&assignment=${encodeURIComponent(assignment)}&type=31`, {
           method: 'POST',
           headers: {
             'Referer': window.location.origin, // Add Referer header to verify request origin
@@ -445,6 +458,40 @@ https://example.com/evidence-b" required></textarea><br><br><br>
           document.getElementById('type3-response').innerHTML = result;
           document.getElementById("search-button").disabled = false
           console.log('Database Assignment Server Response: ', result);
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+      }
+
+        function handleType32Form(event) {
+        document.getElementById("search-button2").disabled = true
+        event.preventDefault(); // Prevent default form submission
+        var username = document.getElementById('inputUsername2').value; // Get username
+        var userEmail = document.getElementById('inputEmail').value; // Get assignment
+        if (!/^[A-Za-z0-9_]{3,21}$/.test(username)) {
+          document.getElementById("type32-response").innerHTML = "The username is invalid."
+          document.getElementById("search-button2").disabled = false
+          return true
+        }
+        console.log('Form Values: ', username, ' ', email);
+        // Add further processing logic here
+        document.getElementById('type3-response').innerHTML = 'Processing your request. This may take a few seconds...';
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&userEmail=${encodeURIComponent(userEmail)}&type=32`, {
+          method: 'POST',
+          headers: {
+            'Referer': window.location.origin, // Add Referer header to verify request origin
+          },
+        }).then(response => {
+          if (response.ok) {
+            return response.json(); // Parse JSON response
+          } else {
+            throw new Error('Failed to fetch response.');
+          }
+        }).then(data => {
+          var result = data.result; // Store the response in the variable
+          document.getElementById('type32-response').innerHTML = result;
+          document.getElementById("search-button2").disabled = false
+          console.log('Email Assignment Server Response: ', result);
         }).catch(error => {
           console.error('Error:', error);
         });
