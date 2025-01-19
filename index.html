@@ -475,7 +475,7 @@ https://example.com/evidence-b" required></textarea><br><br><br>
         }
         console.log('Form Values: ', username, ' ', email);
         // Add further processing logic here
-        document.getElementById('type3-response').innerHTML = 'Processing your request. This may take a few seconds...';
+        document.getElementById('type32-response').innerHTML = 'Processing your request. This may take a few seconds...';
         fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&username=${encodeURIComponent(username)}&userEmail=${encodeURIComponent(userEmail)}&type=32`, {
           method: 'POST',
           headers: {
@@ -1015,7 +1015,8 @@ Considering the circumstances and statutory limitations on the punishment for su
       margin-bottom: 6px;
       }      
       /* Style the search button */
-      #search-button {
+      
+      button[type="submit"] {
       border: none;
       border-radius: 10px;
       padding: 5px 10px;
@@ -1027,16 +1028,16 @@ Considering the circumstances and statutory limitations on the punishment for su
       font-family: calibri;
       cursor: pointer;
       }
-      #search-button:hover {
+      button[type="submit"]:hover {
       background-color: #23527c;
       }
-      #search-button:active {
+      button[type="submit"]:active {
       background-color: #1d3f5b;
       }
-      #search-button:focus {
+      button[type="submit"]:focus {
       outline: none;
       }
-      #search-button:disabled {
+      button[type="submit"]:disabled {
       background-color: #ccc;
       color: #999;
       cursor: not-allowed;
