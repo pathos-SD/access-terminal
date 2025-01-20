@@ -1017,7 +1017,7 @@ Considering the circumstances and statutory limitations on the punishment for su
       }      
       /* Style the search button */
       
-      button[type="submit"] {
+      button[type="submit"]:not(#view-edit-button) {
       border: none;
       border-radius: 10px;
       padding: 5px 10px;
@@ -1029,21 +1029,21 @@ Considering the circumstances and statutory limitations on the punishment for su
       font-family: calibri;
       cursor: pointer;
       }
-      button[type="submit"]:hover {
+      button[type="submit"]:not(#view-edit-button):hover {
       background-color: #23527c;
       }
-      button[type="submit"]:active {
+      button[type="submit"]:not(#view-edit-button):active {
       background-color: #1d3f5b;
       }
-      button[type="submit"]:focus {
+      button[type="submit"]:not(#view-edit-button):focus {
       outline: none;
       }
-      button[type="submit"]:disabled {
+      button[type="submit"]:not(#view-edit-button):disabled {
       background-color: #ccc;
       color: #999;
       cursor: not-allowed;
       }
-      #menu-button {
+      button[type="submit"]#menu-button {
       border: none;
       border-radius: 10px;
       padding: 5px 10px;
@@ -1056,21 +1056,21 @@ Considering the circumstances and statutory limitations on the punishment for su
       font-family: calibri;
       cursor: pointer;
       }
-      #menu-button:hover {
+      button[type="submit"]#menu-button:hover {
       background-color: #237c52;
       }
-      #menu-button:active {
+      button[type="submit"]#menu-button:active {
       background-color: #1d5b3f;
       }
-      #menu-button:focus {
+      button[type="submit"]#menu-button:focus {
       outline: none;
       }
-      #menu-button:disabled {
+      button[type="submit"]#menu-button:disabled {
       background-color: #ccc;
       color: #999;
       cursor: not-allowed;
       }
-      #traffic-button {
+      button[type="submit"]#traffic-button {
       border: none;
       border-radius: 10px;
       padding: 5px 10px;
@@ -1083,16 +1083,16 @@ Considering the circumstances and statutory limitations on the punishment for su
       font-family: calibri;
       cursor: pointer;
       }
-      #traffic-button:hover {
+      button[type="submit"]#traffic-button:hover {
       background-color: #4d4d12;
       }
-      #traffic-button:active {
+      button[type="submit"]#traffic-button:active {
       background-color: #33330c;
       }
-      #traffic-button:focus {
+      button[type="submit"]#traffic-button:focus {
       outline: none;
       }
-      #traffic-button:disabled {
+      button[type="submit"]#traffic-button:disabled {
       background-color: #ccc;
       color: #999;
       cursor: not-allowed;
