@@ -34,7 +34,7 @@
             document.getElementById('authorization-status').innerHTML = `You are signed in as ${email}. Use the button below to change your account.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
             document.getElementById('form-body').innerHTML = `      <h3 style="margin-bottom:15px">Security Department Sign-Up Form</h3>
       <p>By submitting this form, you are requesting access to Security Department Tryouts.<br>The form will use your ROBLOX ID and Discord ID to complete a series of checks (blacklists, SC requirements, etc.) to ensure you're eligible.<br>This is not a commitment. It's perfectly fine to submit this form just to "look around".<br>1-2 minute cooldowns apply, make sure your input is correct and avoid spam.</p>
-      <form id="signup-form" style="line-height:10px" onsubmit="handleType32Form(event)">
+      <form id="signup-form" style="line-height:10px" onsubmit="handleSignup(event)">
       
       <label for="inputRoblox">Your ROBLOX ID:</label><br><br>
       <input type="number" id="inputRoblox" name="inputRoblox" placeholder="1252017" required><br><br><br>
