@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SD Access Terminal</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      let randomNumber = localStorage.getItem('randomNumber');
+      let email = localStorage.getItem('email');
+      
+      function primary() {      
+        if ((!email) || (email == null)) {
+          document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
+        } else {
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&email=${encodeURIComponent(email)}&type=0`, {
+          method: 'POST',
+          headers: {
+            'Referer': window.location.origin, // Add Referer header to verify request origin
+          },
+        }).then(response => {
+          if (response.ok) {
+            return response.json(); // Parse JSON response
+          } else {
+            throw new Error('Failed to fetch response.');
+          }
+        }).then(data => {
+          var result = data.result; // Store the response in the variable
+          console.log(result)
+          if (result == "Failed") {
+                  document.getElementById('authorization-status').innerHTML = `You are not signed in. Press the button below to sign in. Use the account you use for other Pathos purposes, such as documentation.<br><span style="font-size:11px;">By signing in, you consent to the use of local storage for session continuity. No cookies are used. You may view our Privacy Policy <a href="https://pathos-sd.github.io/access-terminal/policy" target="_blank">here</a>.</span>`;
+                return result; // Parse JSON response
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+        }
+      }
+            
+      function handleCredentialResponse(response) {
+        try {
+          // Decode JWT to get the user's email
+          const payload = JSON.parse(atob(response.credential.split('.')[1]));
+          email = payload.email;
+          randomNumber = Math.floor(100000000 + Math.random() * 900000000).toString(); // Generate random 9-digit number
+          localStorage.setItem('randomNumber', randomNumber); // Store it locally
+          localStorage.setItem('email', email);
+          // Send the email and random number to your endpoint
+          fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?randomNumber=${randomNumber}&type=1&token=${encodeURIComponent(response.credential)}`, {
+            method: 'POST',
+          }).then(response => {
+            if (response.ok) {
+              console.log(response)
+              location.reload();
+              return response; // Parse JSON response
+            } else {
+              throw new Error('Failed to fetch response.');
+            }
+          }).catch(error => {
+            console.error('Error:', error);
+          });
+        } catch (error) {
+          console.error('Failed to parse credential response:', error);
+        }
+      }
+      
+        function handleSignup(event) {
+        document.getElementById("submit-button").disabled = true
+        event.preventDefault(); // Prevent default form submission
+        var robloxId = document.getElementById('inputRoblox').value; // Get username
+        var discordId = document.getElementById('inputDiscord').value; // Get assignment
+        console.log('Form Values: ', robloxId, ' ', discordId);
+        // Add further processing logic here
+        document.getElementById('signup-response').innerHTML = 'Processing your request. This may take a few seconds...';
+        fetch(`https://script.google.com/macros/s/AKfycbwxV6p96QiA8dA9zvzzkC4gTtQ3pZcZw308jCKyu95CQeQwy1QfTK7Ll5egYz7kvf7pGg/exec?email=${encodeURIComponent(email)}&randomNumber=${randomNumber}&robloxId=${encodeURIComponent(robloxId)}&discordId=${encodeURIComponent(discordId)}&type=50`, {
+          method: 'POST',
+          headers: {
+            'Referer': window.location.origin, // Add Referer header to verify request origin
+          },
+        }).then(response => {
+          if (response.ok) {
+            return response.json(); // Parse JSON response
+          } else {
+            throw new Error('Failed to fetch response.');
+          }
+        }).then(data => {
+          var result = data.result; // Store the response in the variable
+          document.getElementById('signup-response').innerHTML = result;
+          document.getElementById("submit-button").disabled = false
+          console.log('Signup Server Response: ', result);
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+      }
+    </script>
+    <style>
+      .highlight {
+      background-color: #bf9000;
+      }
+      .highlight-red {
+      background-color: #990000;
+      }
+      a {
+      color: #efefef;
+      }
+      body {
+      background-color: #1e2328;
+      color: #efefef;
+      font-family: calibri;
+      }
+      /* Style the search bar */
+      input, select, textarea {
+      width: 300px;
+      height: 30px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: calibri;
+      color: #333;
+      }
+      input:focus, select:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 2px 1px #337ab7;
+      }
+      input::placeholder, textarea::placeholder {
+      color: #999;
+      }
+      input[type=checkbox] {
+      height: 20px;
+      width: 20px;
+      vertical-align: middle;
+      margin-bottom: 6px;
+      }      
+      /* Style the search button */
+      
+      button[type="submit"]:not(#view-edit-button) {
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      line-height: 30px;
+      background-color: #337ab7;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: calibri;
+      cursor: pointer;
+      }
+      button[type="submit"]:not(#view-edit-button):hover {
+      background-color: #23527c;
+      }
+      button[type="submit"]:not(#view-edit-button):active {
+      background-color: #1d3f5b;
+      }
+      button[type="submit"]:not(#view-edit-button):focus {
+      outline: none;
+      }
+      button[type="submit"]:not(#view-edit-button):disabled {
+      background-color: #ccc;
+      color: #999;
+      cursor: not-allowed;
+      }
+      button[type="submit"]#menu-button {
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      margin-top: 10px;
+      line-height: 30px;
+      background-color: #33b779;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: calibri;
+      cursor: pointer;
+      }
+      button[type="submit"]#menu-button:hover {
+      background-color: #237c52;
+      }
+      button[type="submit"]#menu-button:active {
+      background-color: #1d5b3f;
+      }
+      button[type="submit"]#menu-button:focus {
+      outline: none;
+      }
+      button[type="submit"]#menu-button:disabled {
+      background-color: #ccc;
+      color: #999;
+      cursor: not-allowed;
+      }
+      button[type="submit"]#traffic-button {
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      margin-top: 10px;
+      line-height: 20px;
+      background-color: #73731c;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: calibri;
+      cursor: pointer;
+      }
+      button[type="submit"]#traffic-button:hover {
+      background-color: #4d4d12;
+      }
+      button[type="submit"]#traffic-button:active {
+      background-color: #33330c;
+      }
+      button[type="submit"]#traffic-button:focus {
+      outline: none;
+      }
+      button[type="submit"]#traffic-button:disabled {
+      background-color: #ccc;
+      color: #999;
+      cursor: not-allowed;
+      }
+      hr.rounded {
+      border-top: 8px solid #337ab7;
+      border-bottom: 1px solid #337ab7;
+      border-radius: 5px;
+      }
+      button[type="submit"]#view-edit-button {
+      border: none;
+      background-color: #73731c;
+      color: #fff;
+      font-family: calibri;
+      cursor: pointer;
+      }
+      button[type="submit"]#view-edit-button:hover {
+      background-color: #4d4d12;
+      }
+      button[type="submit"]#view-edit-button:active {
+      background-color: #33330c;
+      }
+      button[type="submit"]#view-edit-button:focus {
+      outline: none;
+      }
+      button[type="submit"]#view-edit-button:disabled {
+      background-color: #ccc;
+      color: #999;
+      cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body onload="primary()">
+    <h4 style="margin-bottom:0px">Authorization</h4>
+    <p style="margin-top:5px" id="authorization-status">Loading...</p>
+    <div id="g_id_onload" data-client_id="700884145716-1qkb1gi9iemnmm1k6e2ieb9u65fcigv9.apps.googleusercontent.com" data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
+    <div class="g_id_signin" data-type="standard"></div>
+    <hr class="rounded">
+    <div id="form-body">
+      <h3 style="margin-bottom:15px">Security Department Sign-Up Form</h3>
+      <p>By submitting this form, you are requesting access to Security Department Tryouts.<br>The form will use your ROBLOX ID and Discord ID to complete a series of checks (blacklists, SC requirements, etc.) to ensure you're eligible.<br>This is not a commitment. It's perfectly fine to submit this form just to "look around".<br>1-2 minute cooldowns apply, make sure your input is correct and avoid spam.</p>
+      <form id="signup-form" style="line-height:10px" onsubmit="handleType32Form(event)">
+      
+      <label for="inputRoblox">Your ROBLOX ID:</label><br><br>
+      <input type="number" id="inputRoblox" name="inputRoblox" placeholder="1252017" required><br><br><br>
+      
+      <label for="inputDiscord">Your Discord ID:</label><br><br>
+      <input type="number" id="inputDiscord" name="inputDiscord" placeholder="1331690134156087347" required><br><br>
+      
+      <button id="submit-button" type="submit">Submit</button>
+      </form>
+      
+      <p id="signup-response"></p>
+    </div>
+  </body>
+</html>
